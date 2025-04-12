@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Tes"
         tools:targetApi="31">
         <activity
+            android:name=".SuksesActiviy"
+            android:exported="false" />
+        <activity
+            android:name=".PendaftaranLowonganActivity"
+            android:exported="false" />
+        <activity
             android:name=".FormulirActivity"
             android:exported="false" />
         <activity

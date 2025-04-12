@@ -73,7 +73,7 @@
 
         <!-- Tombol Kembali -->
         <Button
-            android:id="@+id/btnKembali"
+            android:id="@+id/btnKembali3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kembali"

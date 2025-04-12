@@ -8,17 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class FormulirActivity : AppCompatActivity() {
+class SuksesActiviy : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.mendaftar_lowongan)
-        val btnkembali = findViewById<Button>(R.id.btnKembali3)
-        val btnkirim = findViewById<Button>(R.id.btnKirim)
+        setContentView(R.layout.sukses)
+        val btnkembali = findViewById<Button>(R.id.btnBackToHome)
         btnkembali.setOnClickListener {
-            startActivity(Intent(this, DetailLowonganActivity::class.java))
-        }
-        btnkirim.setOnClickListener {
-            startActivity(Intent(this, SuksesActiviy::class.java))
+            startActivity(Intent(this, DaftarLowonganActivity::class.java))
         }
     }
 }
