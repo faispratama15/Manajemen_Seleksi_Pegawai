@@ -31,7 +31,7 @@
             android:text="Terima kasih sudah melamar. Kami akan menghubungi kamu secepatnya."
             android:layout_marginTop="8dp"
             android:textAlignment="center"
-            android:textColor="#555555" />
+            android:textColorHint="@color/black" />
 
         <Button
             android:id="@+id/btnBackToHome"

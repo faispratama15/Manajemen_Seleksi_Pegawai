@@ -37,20 +37,25 @@
             android:textColor="#000000" />
 
         <!-- NIK -->
+
+        <!-- Nama -->
         <EditText
             android:id="@+id/editNIK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="NIK"
-            android:inputType="number"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#FF9800"
-            android:layout_marginBottom="12dp" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="NIK"
+            android:inputType="number" />
 
-        <!-- Nama -->
         <EditText
             android:id="@+id/editNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:hint="NAMA"
             android:backgroundTint="#FF9800"
             android:layout_marginBottom="12dp" />
@@ -60,6 +65,8 @@
             android:id="@+id/editAlamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:hint="Alamat"
             android:backgroundTint="#FF9800"
             android:layout_marginBottom="12dp" />
@@ -76,6 +83,8 @@
             android:id="@+id/editHp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:hint="No.HP"
             android:inputType="phone"
             android:backgroundTint="#FF9800"
@@ -86,6 +95,8 @@
             android:id="@+id/editUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:hint="Username"
             android:backgroundTint="#FF9800"
             android:layout_marginBottom="12dp" />
@@ -95,6 +106,8 @@
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:hint="Password"
             android:inputType="textPassword"
             android:backgroundTint="#FF9800"
