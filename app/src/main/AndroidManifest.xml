@@ -13,13 +13,17 @@
         android:theme="@style/Theme.Tes"
         tools:targetApi="31">
         <activity
-            android:name=".DaftarLamaranAvtivity"
+            android:name=".EditProfilActivity"
             android:exported="false" />
+        <activity
+            android:name=".HasilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DaftarSoalAcvtivity"
+            android:exported="false" />
+
         <activity
             android:name=".SuksesActiviy"
-            android:exported="false" />
-        <activity
-            android:name=".PendaftaranLowonganActivity"
             android:exported="false" />
         <activity
             android:name=".FormulirActivity"
@@ -27,9 +31,7 @@
         <activity
             android:name=".DetailLowonganActivity"
             android:exported="false" />
-        <activity
-            android:name=".DaftarLowonganActivity"
-            android:exported="false" />
+
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />

@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:background="@drawable/bg_card_rounded">
 
@@ -74,6 +75,7 @@
             android:id="@+id/btnUploadCV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100dp"
             android:text="Upload CV"
             android:backgroundTint="#607D8B"
             android:textColor="#FFFFFF"
@@ -84,6 +86,7 @@
             android:id="@+id/btnKembali3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100dp"
             android:text="Kembali"
             android:backgroundTint="#FF9800"
             android:textColor="#FFFFFF"
@@ -95,6 +98,7 @@
             android:id="@+id/btnKirim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100dp"
             android:text="Kirim Lamaran"
             android:backgroundTint="#4CAF50"
             android:textColor="#FFFFFF" />

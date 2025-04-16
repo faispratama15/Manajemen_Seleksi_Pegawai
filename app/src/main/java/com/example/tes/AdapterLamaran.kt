@@ -17,6 +17,8 @@ class AdapterLamaran (
         val nmposisi: TextView = itemView.findViewById(R.id.tvNamaPosisi)
         val nmperusahaan: TextView = itemView.findViewById(R.id.tvPerusahaan)
         val nmstatus: TextView = itemView.findViewById(R.id.tvStatus)
+        val btnsoal: Button = itemView.findViewById(R.id.btnSoal)
+        val btnHasil: Button = itemView.findViewById(R.id.btnLhtHasil)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,6 +32,14 @@ class AdapterLamaran (
         holder.nmposisi.text = item.posisi
         holder.nmperusahaan.text= item.Perusahaan
         holder.nmstatus.text= item.status
+
+        holder.btnsoal.setOnClickListener {
+            context.startActivity(Intent(context,DaftarSoalAcvtivity::class.java))
+        }
+
+        holder.btnHasil.setOnClickListener {
+            context.startActivity(Intent(context,HasilActivity::class.java))
+        }
 
     }
 

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Lamaran Saya"
         android:textSize="24sp"
+        android:paddingTop="20dp"
         android:textStyle="bold"
         android:textColor="#000"
         android:layout_marginBottom="16dp" />
