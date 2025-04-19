@@ -32,8 +32,7 @@ class ProfileFragment : Fragment() {
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
 
-            val sharedPref = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
-            sharedPref.edit().clear().apply()
+
 
             val intent = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(intent)

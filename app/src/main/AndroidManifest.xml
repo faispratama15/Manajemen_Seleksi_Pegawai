@@ -12,6 +12,55 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tes"
         tools:targetApi="31">
+
+        <activity
+            android:name=".admin.Admin_LihatsoalForUser"
+            android:exported="false" />
+        <activity
+            android:name=".admin.SoalDariadminforuser"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_tambahbatchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_daftarSoalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_TambahSoalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_DetailPelamarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_ItemLowongan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_TambahLowongan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_EditLowongan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_SuksesKirim"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_editSoalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_ItemSoalforAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_ItemPendaftaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_DetailLowonganActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Admin_DaftarPendaftarActivity"
+            android:exported="false" />
         <activity
             android:name=".EditProfilActivity"
             android:exported="false" />
@@ -21,7 +70,6 @@
         <activity
             android:name=".DaftarSoalAcvtivity"
             android:exported="false" />
-
         <activity
             android:name=".SuksesActiviy"
             android:exported="false" />
@@ -31,7 +79,6 @@
         <activity
             android:name=".DetailLowonganActivity"
             android:exported="false" />
-
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
