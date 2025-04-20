@@ -25,9 +25,13 @@ class Fragmentdaftarlowongan : Fragment() {
         val lowonganlist: MutableList<ModelDaftarLowongan> = ArrayList()
         lowonganlist.add(
             ModelDaftarLowongan(
-                lowongan = "staff",
-                Perusahaan = "PT.IKER",
-                lokasi = "Antang"
+                id = 1,
+                nama = "staff",
+                perusahaan = "PT.IKER",
+                lokasi = "Antang",
+                periode = "2050",
+                deskripsi = "jaga",
+                kualifikasi = "umur 19"
             )
         )
 

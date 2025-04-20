@@ -1,5 +1,6 @@
 package com.example.tes.admin
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ class Admin_AdapterDaftarLowongan(
         val nmlokasi: TextView = itemView.findViewById(R.id.txtLokasi)
         val btnlhtdetail = itemView.findViewById<Button>(R.id.btnDetail)
         val btnedit = itemView.findViewById<Button>(R.id.btnEditLowongan)
+        val btnhapus = itemView.findViewById<Button>(R.id.btnhapus)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,10 +31,10 @@ class Admin_AdapterDaftarLowongan(
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val item = mlist[position]
-        holder.nmlowongan.text = item.lowongan
-        holder.nmperusahaan.text= item.Perusahaan
+        holder.nmlowongan.text = item.nama
+        holder.nmperusahaan.text= item.perusahaan
         holder.nmlokasi.text= item.lokasi
 
         holder.btnlhtdetail.setOnClickListener {
@@ -40,7 +42,38 @@ class Admin_AdapterDaftarLowongan(
         }
 
         holder.btnedit.setOnClickListener {
-            context.startActivity(Intent(context, Admin_EditLowongan::class.java))
+            val intent = Intent(context, Admin_EditLowongan::class.java)
+            intent.putExtra("id_lowongan", item.id)
+            intent.putExtra("nama", item.nama)
+            intent.putExtra("lokasi", item.lokasi)
+            intent.putExtra("deskripsi", item.deskripsi)
+            intent.putExtra("perusahaan", item.perusahaan)
+            intent.putExtra("kualifikasi", item.kualifikasi)
+            intent.putExtra("periode", item.periode)
+            context.startActivity(intent)
+        }
+
+        holder.btnhapus.setOnClickListener {
+            val itemId = item.id
+
+            val api = ApiClient.instance
+            val call = api.hapusLowongan(itemId)
+
+            call.enqueue(object : retrofit2.Callback<HapusResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<HapusResponse>,
+                    response: retrofit2.Response<HapusResponse>
+                ) {
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        (mlist as MutableList).removeAt(position)
+                        notifyItemRemoved(position)
+                    }
+                }
+
+                override fun onFailure(call: retrofit2.Call<HapusResponse>, t: Throwable) {
+
+                }
+            })
         }
 
     }

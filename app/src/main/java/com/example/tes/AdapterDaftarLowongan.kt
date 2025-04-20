@@ -28,8 +28,8 @@ class AdapterDaftarLowongan (
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mlist[position]
-        holder.nmlowongan.text = item.lowongan
-        holder.nmperusahaan.text= item.Perusahaan
+        holder.nmlowongan.text = item.nama
+        holder.nmperusahaan.text= item.perusahaan
         holder.nmlokasi.text= item.lokasi
 
         holder.btnlhtdetail.setOnClickListener {

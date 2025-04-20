@@ -12,6 +12,5 @@ class Admin_ItemPendaftaranActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_admin_item_pendaftaran)
-
     }
 }

@@ -28,7 +28,7 @@
 
         <!-- Input Posisi -->
         <EditText
-            android:id="@+id/editPosisi"
+            android:id="@+id/editNamaLowongan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nama Posisi"
