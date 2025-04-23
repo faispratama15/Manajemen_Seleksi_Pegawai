@@ -69,7 +69,6 @@ class Admin_DaftarLowonganFragment : Fragment() {
                     Toast.makeText(requireContext(), "Gagal ambil data", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<ResponseLowongan>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
