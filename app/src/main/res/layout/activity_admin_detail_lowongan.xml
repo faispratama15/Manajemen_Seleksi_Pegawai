@@ -32,7 +32,7 @@
             android:layout_marginBottom="8dp">
 
             <TextView
-                android:id="@+id/txtPosisi2"
+                android:id="@+id/nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Staff IT"
@@ -54,7 +54,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/txtPerusahaan2"
+            android:id="@+id/perusahaan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PT Teknologi Nusantara"
@@ -64,7 +64,7 @@
             android:layout_marginBottom="4dp" />
 
         <TextView
-            android:id="@+id/txtLokasi2"
+            android:id="@+id/lokasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lokasi: Antang"
@@ -74,7 +74,7 @@
 
         <!-- Tanggal -->
         <TextView
-            android:id="@+id/txtTanggal"
+            android:id="@+id/periode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Periode: 1 - 15 April 2025"
@@ -83,10 +83,33 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
-            android:id="@+id/txtDeskripsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Deskripsi pekerjaan:\n\nBertanggung jawab atas pengembangan, pemeliharaan, dan dukungan sistem informasi internal perusahaan. Mampu bekerja dalam tim dan memiliki inisiatif tinggi terhadap penyelesaian masalah teknis.\n\nKualifikasi:\n- Minimal D3/S1 Teknik Informatika\n- Pengalaman 1 tahun di bidang yang sama\n- Menguasai PHP/Java/Kotlin menjadi nilai plus"
+            android:text="Deskripsi pekerjaan:"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/deskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
+            android:textColor="#000000" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kualifikasi"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/kualifikasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
             android:textSize="14sp"
             android:textColor="#000000" />
 

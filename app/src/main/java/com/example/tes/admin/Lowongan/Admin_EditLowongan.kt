@@ -5,7 +5,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tes.R
 import com.example.tes.admin.ApiClient
-import com.example.tes.admin.HapusResponse
+import com.example.tes.admin.SendResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,8 +44,8 @@ class Admin_EditLowongan : AppCompatActivity() {
 
             val api = ApiClient.instance
             api.editLowongan(id_lowongan, nama, perusahaan, lokasi, periode, deskripsi, kualifikasi)
-                .enqueue(object : Callback<HapusResponse> {
-                    override fun onResponse(call: Call<HapusResponse>, response: Response<HapusResponse>) {
+                .enqueue(object : Callback<SendResponse> {
+                    override fun onResponse(call: Call<SendResponse>, response: Response<SendResponse>) {
                         if (response.isSuccessful && response.body()?.success == true) {
                             Toast.makeText(this@Admin_EditLowongan, "Data berhasil diperbarui", Toast.LENGTH_SHORT).show()
                             finish()
@@ -54,7 +54,7 @@ class Admin_EditLowongan : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<HapusResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<SendResponse>, t: Throwable) {
                         Toast.makeText(this@Admin_EditLowongan, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })

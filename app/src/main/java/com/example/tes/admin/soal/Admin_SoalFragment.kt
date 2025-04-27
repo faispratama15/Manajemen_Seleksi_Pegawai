@@ -11,12 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tes.R
+import com.example.tes.admin.ApiClient
 import com.example.tes.admin.ModelBatch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class Admin_SoalFragment() : Fragment() {
+class Admin_SoalFragment : Fragment() {
+
     private lateinit var recyclerView: RecyclerView
-    private lateinit var batchAdapter: Admin_AdapterDaftarSoalSeleksi
-    private lateinit var listBatch: List<ModelBatch>
+    private lateinit var adapter: Admin_AdapterDaftarSoalSeleksi
+    private val listBatch = mutableListOf<ModelBatch>()
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -26,34 +31,38 @@ class Admin_SoalFragment() : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.activity_admin_form_tambah_soal, container, false)
 
-        recyclerView = view.findViewById(R.id.recyclerViewSoal2)
-        val btnTambah = view.findViewById<View>(R.id.btnTambahsoal)
-
-        listBatch = listOf(
-            ModelBatch("Soal Staff IT")
-        )
-
-        batchAdapter = Admin_AdapterDaftarSoalSeleksi(
-            listBatch = listBatch,
-            onLihatClick = { batch ->
-                Toast.makeText(requireContext(), "Lihat ${batch.namaBatch}", Toast.LENGTH_SHORT).show()
-
-            },
-            onHapusClick = { batch ->
-                Toast.makeText(requireContext(), "Hapus ${batch.namaBatch}", Toast.LENGTH_SHORT).show()
-
-            },
-            context
-        )
-
-        recyclerView.adapter = batchAdapter
+        recyclerView = view.findViewById(R.id.recyclerViewSoal)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = Admin_AdapterDaftarSoalSeleksi(listBatch, requireContext())
+        recyclerView.adapter = adapter
 
+        val btnTambah = view.findViewById<View>(R.id.btnTambahsoal)
         btnTambah.setOnClickListener {
             val intent = Intent(requireContext(), Admin_tambahbatchActivity::class.java)
             startActivity(intent)
         }
 
+        loadBatchSoal()
+
         return view
+    }
+
+    private fun loadBatchSoal() {
+        ApiClient.instance.getBatchSoal().enqueue(object : Callback<GetBatchSoalResponse> {
+            override fun onResponse(call: Call<GetBatchSoalResponse>, response: Response<GetBatchSoalResponse>) {
+                if (response.isSuccessful && response.body()?.success == true) {
+                    val data = response.body()?.data ?: emptyList()
+                    listBatch.clear()
+                    listBatch.addAll(data)
+                    adapter.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(requireContext(), "Gagal ambil data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<GetBatchSoalResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

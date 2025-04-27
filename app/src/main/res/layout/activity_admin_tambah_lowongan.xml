@@ -25,7 +25,7 @@
 
         <!-- Input Posisi -->
         <EditText
-            android:id="@+id/edtnama"
+            android:id="@+id/nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nama Posisi"
@@ -35,7 +35,7 @@
 
         <!-- Input Nama Perusahaan -->
         <EditText
-            android:id="@+id/edtPerusahaan"
+            android:id="@+id/Perusahaan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nama Perusahaan"
@@ -45,7 +45,7 @@
 
         <!-- Input Lokasi -->
         <EditText
-            android:id="@+id/edtLokasi"
+            android:id="@+id/Lokasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Lokasi"
@@ -55,7 +55,7 @@
 
         <!-- Input Periode -->
         <EditText
-            android:id="@+id/edtPeriode"
+            android:id="@+id/Periode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Periode (contoh: 1 - 15 April 2025)"
@@ -65,7 +65,7 @@
 
         <!-- Input Deskripsi -->
         <EditText
-            android:id="@+id/edtDeskripsi"
+            android:id="@+id/Deskripsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Deskripsi Pekerjaan"
@@ -77,7 +77,7 @@
 
         <!-- Input Kualifikasi -->
         <EditText
-            android:id="@+id/edtKualifikasi"
+            android:id="@+id/Kualifikasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Kualifikasi"

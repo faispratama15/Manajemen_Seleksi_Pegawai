@@ -9,5 +9,3 @@ data class ModelDaftarLowongan(
     val deskripsi: String,
     val kualifikasi: String
 )
-
-

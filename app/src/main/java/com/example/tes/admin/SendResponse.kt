@@ -1,7 +1,8 @@
 package com.example.tes.admin
 
-data class HapusResponse(
+data class SendResponse(
+
     val success: Boolean,
     val message: String
-    
+
 )

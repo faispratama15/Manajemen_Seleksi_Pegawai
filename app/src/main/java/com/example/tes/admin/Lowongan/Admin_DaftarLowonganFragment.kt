@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tes.admin.User.ModelDaftarLowongan
 import com.example.tes.R
 import com.example.tes.admin.ApiClient
-import com.example.tes.admin.ResponseLowongan
+import com.example.tes.admin.GetResponse
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,8 +56,8 @@ class Admin_DaftarLowonganFragment : Fragment() {
     }
 
     private fun loadLowonganData() {
-        ApiClient.instance.getLowongan().enqueue(object : Callback<ResponseLowongan> {
-            override fun onResponse(call: Call<ResponseLowongan>, response: Response<ResponseLowongan>) {
+        ApiClient.instance.getLowongan().enqueue(object : Callback<GetResponse> {
+            override fun onResponse(call: Call<GetResponse>, response: Response<GetResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
                     val newData = response.body()?.data ?: emptyList()
                     dataLowongan.clear()
@@ -67,7 +67,7 @@ class Admin_DaftarLowonganFragment : Fragment() {
                     Toast.makeText(requireContext(), "Gagal ambil data", Toast.LENGTH_SHORT).show()
                 }
             }
-            override fun onFailure(call: Call<ResponseLowongan>, t: Throwable) {
+            override fun onFailure(call: Call<GetResponse>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })

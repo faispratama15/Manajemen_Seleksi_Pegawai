@@ -20,7 +20,7 @@
     
     <!-- RecyclerView untuk soal -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSoal2"
+        android:id="@+id/recyclerViewSoal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtJudulSoal"
