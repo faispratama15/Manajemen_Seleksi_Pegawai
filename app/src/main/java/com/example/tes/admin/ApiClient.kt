@@ -2,16 +2,14 @@ package com.example.tes.admin
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 object ApiClient {
-    private const val BASE_URL = "http://192.168.211.203:8000/" // Pastikan ini benar
 
+    private const val BASE_URL = "http://192.168.251.203:8000/"
     val instance: ApiService by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
         retrofit.create(ApiService::class.java)
     }
 }

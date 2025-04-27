@@ -47,7 +47,7 @@
                 android:layout_marginBottom="12dp" />
 
             <EditText
-                android:id="@+id/editPertanyaan"
+                android:id="@+id/editPertanyaan2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Masukkan pertanyaan"
@@ -55,42 +55,42 @@
                 android:layout_marginBottom="8dp" />
 
             <EditText
-                android:id="@+id/editJawabanA"
+                android:id="@+id/editJawabanA2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Jawaban A"
                 android:layout_marginBottom="8dp" />
 
             <EditText
-                android:id="@+id/editJawabanB"
+                android:id="@+id/editJawabanB2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Jawaban B"
                 android:layout_marginBottom="8dp" />
 
             <EditText
-                android:id="@+id/editJawabanC"
+                android:id="@+id/editJawabanC2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Jawaban C"
                 android:layout_marginBottom="8dp" />
 
             <EditText
-                android:id="@+id/editJawabanD"
+                android:id="@+id/editJawabanD2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Jawaban D"
                 android:layout_marginBottom="8dp" />
 
             <EditText
-                android:id="@+id/editKunciJawaban"
+                android:id="@+id/editKunciJawaban2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Kunci Jawaban (misal: A)"
                 android:layout_marginBottom="12dp" />
 
             <Button
-                android:id="@+id/btnSimpanSoal"
+                android:id="@+id/btnSimpanSoal2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Oke"

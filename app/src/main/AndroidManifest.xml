@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,78 +14,74 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tes"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
-
-
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
         <activity
-            android:name=".admin.Admin_LihatsoalForUser"
+            android:name=".admin.soal.Activity_Admin_DaftarSoal"
             android:exported="false" />
         <activity
-            android:name=".admin.SoalDariadminforuser"
+            android:name=".admin.soal.Admin_LihatsoalForUser"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_tambahbatchActivity"
+            android:name=".admin.soal.Admin_tambahbatchActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_daftarSoalActivity"
+            android:name=".admin.soal.TambahBatchActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_TambahSoalActivity"
+            android:name=".admin.soal.Admin_daftarSoalActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_DetailPelamarActivity"
+            android:name=".admin.Lowongan.Admin_DetailPelamarActivity"
             android:exported="false" />
         <activity
             android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_ItemLowongan"
+            android:name=".admin.Lowongan.Admin_ItemLowongan"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_TambahLowongan"
+            android:name=".admin.Lowongan.Admin_TambahLowongan"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_EditLowongan"
+            android:name=".admin.Lowongan.Admin_EditLowongan"
             android:exported="false" />
         <activity
             android:name=".admin.Admin_SuksesKirim"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_editSoalActivity"
+            android:name=".admin.soal.Admin_editSoalActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.Lowongan.Admin_ItemPendaftaranActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_ItemSoalforAdmin"
+            android:name=".admin.Lowongan.Admin_DetailLowonganActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_ItemPendaftaranActivity"
+            android:name=".admin.Lowongan.Admin_DaftarPendaftarActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_DetailLowonganActivity"
+            android:name=".admin.User.EditProfilActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.Admin_DaftarPendaftarActivity"
+            android:name=".admin.User.HasilActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfilActivity"
+            android:name=".admin.User.DaftarSoalAcvtivity"
             android:exported="false" />
         <activity
-            android:name=".HasilActivity"
+            android:name=".admin.User.SuksesActiviy"
             android:exported="false" />
         <activity
-            android:name=".DaftarSoalAcvtivity"
+            android:name=".admin.User.FormulirActivity"
             android:exported="false" />
         <activity
-            android:name=".SuksesActiviy"
+            android:name=".admin.User.DetailLowonganActivity"
             android:exported="false" />
         <activity
-            android:name=".FormulirActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DetailLowonganActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".admin.User.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
@@ -92,7 +90,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".admin.User.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,12 +1,10 @@
 package com.example.tes
 
-import ViewPagerAdapter
+import com.example.tes.admin.User.ViewPagerAdapter
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity() {

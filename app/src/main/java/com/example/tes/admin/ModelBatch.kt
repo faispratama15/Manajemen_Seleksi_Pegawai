@@ -1,5 +1,5 @@
 package com.example.tes.admin
 
- class ModelBatch(
+class ModelBatch(
     val namaBatch: String=""
 )

@@ -6,7 +6,7 @@ class ModelTambahSoal (
     val jawabanB: String="",
     val jawabanC: String="",
     val jawabanD: String="",
-    val kunci: String=""
+    val jawaban_benar: String=""
 )
 
 

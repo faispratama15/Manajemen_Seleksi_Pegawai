@@ -1,14 +1,15 @@
+package com.example.tes.admin.User
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.tes.admin.Lowongan.Admin_DaftarLowonganFragment
-import com.example.tes.admin.soal.Admin_SoalFragment
 
-class Admin_adapterViewpager(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
     private val fragmentlist = listOf(
-        Admin_DaftarLowonganFragment(),
-        Admin_SoalFragment(),
+        Fragmentdaftarlowongan(),
+        LamaranFragment(),
+        ProfileFragment(),
     )
 
     override fun getItemCount(): Int = fragmentlist.size
@@ -16,3 +17,4 @@ class Admin_adapterViewpager(fragmentActivity: FragmentActivity) : FragmentState
     override fun createFragment(position: Int): Fragment = fragmentlist[position]
 
 }
+
