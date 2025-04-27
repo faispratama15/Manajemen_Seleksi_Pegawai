@@ -1,6 +1,6 @@
 package com.example.tes.admin
 
-data class Soal(
+data class ModelLihatSoal(
     val id: Int,
     val pertanyaan: String,
     val jawabanA: String,

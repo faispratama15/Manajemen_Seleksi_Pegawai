@@ -24,37 +24,10 @@ class Admin_TambahLowongan : AppCompatActivity() {
         val edtKualifikasi = findViewById<EditText>(R.id.edtKualifikasi)
         val btnTambah = findViewById<Button>(R.id.btnTambahLowongan)
         val btnBatal = findViewById<Button>(R.id.btnBatalbt)
-        btnBatal.setOnClickListener { finish() }
+        btnBatal.setOnClickListener {
+            finish()
+        }
         btnTambah.setOnClickListener {
-
-            val id_lowongan = intent.getIntExtra("id_lowongan", 0)
-            val nama = edtNama.text.toString()
-            val perusahaan = edtPerusahaan.text.toString()
-            val lokasi = edtLokasi.text.toString()
-            val periode = edtPeriode.text.toString()
-            val deskripsi = edtDeskripsi.text.toString()
-            val kualifikasi = edtKualifikasi.text.toString()
-
-            if (nama.isEmpty() || perusahaan.isEmpty() || lokasi.isEmpty() || periode.isEmpty() || deskripsi.isEmpty() || kualifikasi.isEmpty()) {
-                Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            ApiClient.instance.tambahLowongan(id_lowongan.toString(),nama, perusahaan, lokasi, periode, deskripsi, kualifikasi)
-                .enqueue(object : Callback<HapusResponse> {
-                    override fun onResponse(call: Call<HapusResponse>, response: Response<HapusResponse>) {
-                        if (response.isSuccessful && response.body()?.success == true) {
-                            Toast.makeText(this@Admin_TambahLowongan, "Berhasil menambahkan lowongan", Toast.LENGTH_SHORT).show()
-                            finish()
-                        } else {
-                            Toast.makeText(this@Admin_TambahLowongan, "Gagal menambahkan", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<HapusResponse>, t: Throwable) {
-                        Toast.makeText(this@Admin_TambahLowongan, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                    }
-                })
 
         }
     }
