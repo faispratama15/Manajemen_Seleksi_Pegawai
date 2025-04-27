@@ -41,8 +41,6 @@ class Admin_DaftarLowonganFragment : Fragment() {
         adapter = Admin_AdapterDaftarLowongan(dataLowongan, requireContext())
         recyclerView.adapter = adapter
 
-        loadLowonganData()
-
         btnTambah.setOnClickListener {
             val intent = Intent(requireActivity(), Admin_TambahLowongan::class.java)
             startActivity(intent)
