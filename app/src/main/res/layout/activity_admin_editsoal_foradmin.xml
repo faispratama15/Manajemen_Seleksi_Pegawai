@@ -8,34 +8,53 @@
     android:background="@drawable/border_card">
 
     <!-- Baris pertanyaan dan checkbox -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="12dp"
-        android:gravity="center_vertical">
+        android:layout_marginBottom="12dp">
 
         <!-- Pertanyaan -->
         <TextView
+            android:layout_toLeftOf="@id/opsi"
             android:id="@+id/txtPertanyaan"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Apa itu Kotlin?"
             android:textSize="16sp"
             android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/btnEditSoala"
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:id="@+id/opsi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#FF9800"
-            android:layout_marginTop="12dp"
-            android:layout_gravity="end" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnEditSoala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FF9800"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="end" />
+
+            <Button
+                android:id="@+id/btnHapusSoala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hapus"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FF0000"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="end" />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
 
     <!-- Pilihan Jawaban -->
     <RadioGroup
@@ -70,5 +89,21 @@
 
     <!-- Tombol Edit -->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jawaban: "/>
+
+        <TextView
+            android:id="@+id/jawaban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"/>
+    </LinearLayout>
 
 </LinearLayout>

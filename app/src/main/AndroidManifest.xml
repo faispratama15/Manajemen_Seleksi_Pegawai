@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".admin.soal.EditBatchSoalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.soal.TambahSoalActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.soal.Activity_Admin_DaftarSoal"
             android:exported="false" />
         <activity
@@ -52,7 +58,6 @@
         <activity
             android:name=".admin.soal.Admin_editSoalActivity"
             android:exported="false" />
-
         <activity
             android:name=".admin.Lowongan.Admin_ItemPendaftaranActivity"
             android:exported="false" />

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tes.R
 import com.example.tes.admin.ApiClient
 import com.example.tes.admin.ModelBatch
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,20 +37,24 @@ class Admin_SoalFragment : Fragment() {
         adapter = Admin_AdapterDaftarSoalSeleksi(listBatch, requireContext())
         recyclerView.adapter = adapter
 
-        val btnTambah = view.findViewById<View>(R.id.btnTambahsoal)
+        val btnTambah = view.findViewById<FloatingActionButton>(R.id.btnTambahsoal)
         btnTambah.setOnClickListener {
             val intent = Intent(requireContext(), Admin_tambahbatchActivity::class.java)
             startActivity(intent)
         }
 
-        loadBatchSoal()
-
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        loadBatchSoal()
+    }
+
     private fun loadBatchSoal() {
-        ApiClient.instance.getBatchSoal().enqueue(object : Callback<GetBatchSoalResponse> {
-            override fun onResponse(call: Call<GetBatchSoalResponse>, response: Response<GetBatchSoalResponse>) {
+        ApiClient.instance.getBatchSoal().enqueue(object : Callback<GetResponeBatch> {
+            override fun onResponse(call: Call<GetResponeBatch>, response: Response<GetResponeBatch>) {
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data ?: emptyList()
                     listBatch.clear()
@@ -60,7 +65,7 @@ class Admin_SoalFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<GetBatchSoalResponse>, t: Throwable) {
+            override fun onFailure(call: Call<GetResponeBatch>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })

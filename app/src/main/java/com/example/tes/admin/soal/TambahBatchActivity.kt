@@ -11,18 +11,6 @@ class TambahBatchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.admin_tambahbatch)
-        val btnBuatSoal = findViewById<Button>(R.id.btnBuatSoal2)
-        val batchId = 1
 
-        val fragment = TambahSoalFragment()
-        val bundle = Bundle()
-        bundle.putInt("batch_id", batchId)
-        fragment.arguments = bundle
-        btnBuatSoal.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, TambahSoalFragment())
-                .addToBackStack(null)
-                .commit()
-        }
     }
 }

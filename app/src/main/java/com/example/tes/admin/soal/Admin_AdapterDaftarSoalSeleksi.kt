@@ -18,12 +18,13 @@ import retrofit2.Response
 
 class Admin_AdapterDaftarSoalSeleksi(
     private val listBatch: List<ModelBatch>,
-    private val context: Context?
+    private val context: Context
 ) : RecyclerView.Adapter<Admin_AdapterDaftarSoalSeleksi.BatchViewHolder>() {
 
     inner class BatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtNamaBatch: TextView = itemView.findViewById(R.id.txtNamaBatch)
         val btnLihatBatch: Button = itemView.findViewById(R.id.btnlihatBatch)
+        val btnEditBatch: Button = itemView.findViewById(R.id.btnEditBatch)
         val btnHapusBatch: Button = itemView.findViewById(R.id.btnHapusBatch)
 
     }
@@ -36,6 +37,19 @@ class Admin_AdapterDaftarSoalSeleksi(
     override fun onBindViewHolder(holder: BatchViewHolder, position: Int) {
         val batch = listBatch[position]
         holder.txtNamaBatch.text = batch.nama
+
+        holder.btnLihatBatch.setOnClickListener {
+            val intent = Intent(context, Admin_LihatsoalForUser::class.java)
+            intent.putExtra("idBatchSoal", batch.id)
+            context.startActivity(intent)
+        }
+
+        holder.btnEditBatch.setOnClickListener {
+            val intent = Intent(context, EditBatchSoalActivity::class.java)
+            intent.putExtra("idBatchSoal", batch.id)
+            intent.putExtra("namaBatchSoal", batch.nama)
+            context.startActivity(intent)
+        }
 
         holder.btnHapusBatch.setOnClickListener {
             if (context != null) {
@@ -53,9 +67,7 @@ class Admin_AdapterDaftarSoalSeleksi(
             }
         }
 
-        holder.btnLihatBatch.setOnClickListener {
 
-        }
     }
 
     override fun getItemCount(): Int = listBatch.size

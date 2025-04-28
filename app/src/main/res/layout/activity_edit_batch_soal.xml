@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tambah Batch Soal"
+            android:text="Edit Batch Soal"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -22,7 +22,7 @@
             android:layout_marginBottom="24dp" />
 
         <EditText
-            android:id="@+id/edtNamaBatch"
+            android:id="@+id/NamaBatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukkan nama batch"
@@ -32,7 +32,7 @@
             android:layout_marginBottom="24dp" />
 
         <Button
-            android:id="@+id/btnSimpanBatch2"
+            android:id="@+id/btnSimpanBatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Simpan Batch"

@@ -10,10 +10,10 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tes.R
-import com.example.tes.admin.ModelTambahSoal
+import com.example.tes.admin.ModelSoal
 
 class Adapter_TambahSoal(
-    private val listSoal: List<ModelTambahSoal>,
+    private val listSoal: List<ModelSoal>,
     private val context: Context
 ) : RecyclerView.Adapter<Adapter_TambahSoal.SoalViewHolder>() {
 
@@ -35,11 +35,11 @@ class Adapter_TambahSoal(
 
     override fun onBindViewHolder(holder: SoalViewHolder, position: Int) {
         val soal = listSoal[position]
-        holder.txtPertanyaan.text = soal.pertanyaan
-        holder.radioA.text = "A. ${soal.jawabanA}"
-        holder.radioB.text = "B. ${soal.jawabanB}"
-        holder.radioC.text = "C. ${soal.jawabanC}"
-        holder.radioD.text = "D. ${soal.jawabanD}"
+        holder.txtPertanyaan.text = soal.soal
+        holder.radioA.text = "A. ${soal.pil1}"
+        holder.radioB.text = "B. ${soal.pil2}"
+        holder.radioC.text = "C. ${soal.pil3}"
+        holder.radioD.text = "D. ${soal.pil4}"
 
         holder.btnEdit.setOnClickListener {
             context.startActivity(Intent(context, Admin_editSoalActivity::class.java))
