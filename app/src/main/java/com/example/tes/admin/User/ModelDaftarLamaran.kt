@@ -1,8 +1,7 @@
 package com.example.tes.admin.User
 
-class ModelDaftarLamaran (
-    val  id: String ="",
-    val  posisi: String,
-    val  Perusahaan: String,
-    val status: String,
+data class ModelDaftarLamaran(
+    val posisi: String,
+    val Perusahaan: String,
+    val ModelDaftarLowongan_id: Int
 )

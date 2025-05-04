@@ -61,7 +61,7 @@
 
         <!-- Tanggal -->
         <TextView
-            android:id="@+id/txtTanggal"
+            android:id="@+id/txtTanggal2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Periode: 1 - 15 April 2025"
@@ -71,10 +71,18 @@
 
         <!-- Deskripsi Lengkap -->
         <TextView
-            android:id="@+id/txtDeskripsi"
+            android:id="@+id/txtDeskripsi2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Deskripsi pekerjaan:\n\nBertanggung jawab atas pengembangan, pemeliharaan, dan dukungan sistem informasi internal perusahaan. Mampu bekerja dalam tim dan memiliki inisiatif tinggi terhadap penyelesaian masalah teknis.\n\nKualifikasi:\n- Minimal D3/S1 Teknik Informatika\n- Pengalaman 1 tahun di bidang yang sama\n- Menguasai PHP/Java/Kotlin menjadi nilai plus"
+            android:text="Deskripsi pekerjaan:"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/kualifikasi2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kualifikasi"
             android:textSize="14sp"
             android:textColor="#000000" />
 

@@ -47,7 +47,7 @@
 
         <!-- Username -->
         <EditText
-            android:id="@+id/editUsername"
+            android:id="@+id/editUsernamelog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -58,7 +58,7 @@
 
         <!-- Password -->
         <EditText
-            android:id="@+id/editPassword"
+            android:id="@+id/editPasswordlog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"

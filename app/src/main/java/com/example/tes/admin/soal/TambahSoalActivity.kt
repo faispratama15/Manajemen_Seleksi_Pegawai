@@ -41,7 +41,6 @@ class TambahSoalActivity : AppCompatActivity() {
                 R.id.radio4 -> jawabanBenar.text = "D"
             }
         }
-
         val editPertanyaan = findViewById<EditText>(R.id.editPertanyaan2)
         val jawabanA = findViewById<EditText>(R.id.jawaban1)
         val jawabanB = findViewById<EditText>(R.id.jawaban2)
@@ -79,7 +78,6 @@ class TambahSoalActivity : AppCompatActivity() {
                             Toast.makeText(this@TambahSoalActivity, "Gagal menambahkan soal", Toast.LENGTH_SHORT).show()
                         }
                     }
-
                     override fun onFailure(call: retrofit2.Call<SendResponse>, t: Throwable) {
                         Toast.makeText(this@TambahSoalActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                     }

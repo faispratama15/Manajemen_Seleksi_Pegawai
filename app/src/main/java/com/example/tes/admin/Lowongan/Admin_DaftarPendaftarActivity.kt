@@ -31,7 +31,5 @@ class Admin_DaftarPendaftarActivity : AppCompatActivity() {
         rclview.layoutManager= LinearLayoutManager(this)
         val adapter= Admin_AdapterDaftarPendaftar(lamaranlist, this)
         rclview.adapter = adapter
-
     }
-
 }

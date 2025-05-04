@@ -30,11 +30,11 @@ class Admin_DetailLowonganActivity : AppCompatActivity() {
         val btngambarbck = findViewById<ImageView>(R.id.bckbck)
 
         Nama.setText(intent.getStringExtra("nama"))
-        Perusahaan.setText(intent.getStringExtra("nama"))
-        Lokasi.setText(intent.getStringExtra("nama"))
-        Periode.setText(intent.getStringExtra("nama"))
-        Deskripsi.setText(intent.getStringExtra("nama"))
-        Kualifikasi.setText(intent.getStringExtra("nama"))
+        Perusahaan.setText(intent.getStringExtra("perusahaan"))
+        Lokasi.setText(intent.getStringExtra("lokasi"))
+        Periode.setText(intent.getStringExtra("periode"))
+        Deskripsi.setText(intent.getStringExtra("deskripsi"))
+        Kualifikasi.setText(intent.getStringExtra("kualifikasi"))
 
         btnlihatpendaftar.setOnClickListener {
             startActivity(Intent(this, Admin_DaftarPendaftarActivity::class.java))

@@ -1,5 +1,4 @@
 package com.example.tes.admin.User
-
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +9,5 @@ class DaftarSoalAcvtivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.tampilan_soal)
-
     }
 }

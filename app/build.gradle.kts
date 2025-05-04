@@ -28,7 +28,6 @@ android {
     }
 
     buildTypes {
-
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -45,20 +44,24 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.play.services.base)
+
+    // Retrofit dependencies
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
+
 
     // Google Play Services
     implementation("com.google.android.gms:play-services-base:18.7.0")
     implementation("com.google.android.gms:play-services-tasks:18.3.0")
     implementation("com.google.android.gms:play-services-basement:18.7.0")
-
+    implementation(libs.firebase.firestore.ktx)
 
     // Core library desugaring
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.3")
 
-    // Testing
+    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

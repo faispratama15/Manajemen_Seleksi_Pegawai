@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tes.MainActivity
+import com.example.tes.MainActivity2
 import com.example.tes.R
 
 class SuksesActiviy : AppCompatActivity() {
@@ -13,7 +13,7 @@ class SuksesActiviy : AppCompatActivity() {
         setContentView(R.layout.sukses)
         val btnkembali = findViewById<Button>(R.id.btnBackToHome)
         btnkembali.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity2::class.java))
         }
     }
 }

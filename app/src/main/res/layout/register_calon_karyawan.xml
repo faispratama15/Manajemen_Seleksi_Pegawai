@@ -90,6 +90,7 @@
             android:backgroundTint="#FF9800"
             android:layout_marginBottom="12dp" />
 
+
         <!-- Username -->
         <EditText
             android:id="@+id/editUsername"
@@ -103,7 +104,7 @@
 
         <!-- Password -->
         <EditText
-            android:id="@+id/editPassword"
+            android:id="@+id/editPasswordrgs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -121,7 +122,7 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/btnDaftar"
+                android:id="@+id/btnDaftargs"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -131,7 +132,7 @@
                 android:layout_marginEnd="8dp" />
 
             <Button
-                android:id="@+id/btnKembali"
+                android:id="@+id/btnKembalirgs"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

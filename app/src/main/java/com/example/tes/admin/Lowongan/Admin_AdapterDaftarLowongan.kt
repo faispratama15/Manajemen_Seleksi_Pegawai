@@ -26,13 +26,11 @@ class Admin_AdapterDaftarLowongan(
         val btnedit: Button = itemView.findViewById(R.id.btnEditLowongan)
         val btnhapus: Button = itemView.findViewById(R.id.btnhapus)
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.activity_admin_item_lowongan, parent, false)
         return ViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mlist[position]
         holder.nmlowongan.text = item.nama
@@ -49,7 +47,6 @@ class Admin_AdapterDaftarLowongan(
             intent.putExtra("periode", item.periode)
             context.startActivity(intent)
         }
-
         holder.btnedit.setOnClickListener {
             val intent = Intent(context, Admin_EditLowongan::class.java)
             intent.putExtra("id_lowongan", item.id)
@@ -61,16 +58,13 @@ class Admin_AdapterDaftarLowongan(
             intent.putExtra("periode", item.periode)
             context.startActivity(intent)
         }
-
         holder.btnhapus.setOnClickListener {
             hapusLowongan(position)
         }
     }
-
     override fun getItemCount(): Int {
         return mlist.size
     }
-
     private fun hapusLowongan(position: Int) {
         val item = mlist[position]
         val itemId = item.id
@@ -93,12 +87,10 @@ class Admin_AdapterDaftarLowongan(
                             notifyItemRangeChanged(position, mlist.size)
                         }
                     }
-
                     override fun onFailure(call: retrofit2.Call<SendResponse>, t: Throwable) {
                         // Optional: tampilkan error message
                     }
                 })
-
                 dialog.dismiss()
             }
             .setNegativeButton("Batal") { dialog, _ ->

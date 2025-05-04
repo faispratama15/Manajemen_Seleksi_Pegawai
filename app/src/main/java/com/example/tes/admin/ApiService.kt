@@ -1,15 +1,27 @@
 
 package com.example.tes.admin
 
+import LamaranResponse
+import com.example.tes.admin.User.LoginRequest
+import com.example.tes.admin.User.LoginResponse
+import com.example.tes.admin.User.RegisterRequest
+import com.example.tes.admin.User.RegisterResponse
 import com.example.tes.admin.soal.GetResponeBatch
 import com.example.tes.admin.soal.GetResponseSoal
-import com.example.tes.admin.soal.SoalRequest
-import retrofit2.Response
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.GET
 import retrofit2.http.Query
-import com.example.tes.admin.soal.SoalResponse
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Headers
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.Path
+
 interface ApiService {
     @GET("lowongan/get")
     fun getLowongan(): Call<GetResponse>
@@ -85,4 +97,32 @@ interface ApiService {
         @Query("id") id: Int
     ): Call<SendResponse>
 
+    @POST("api/register")
+    fun registerUser(@Body request: RegisterRequest): Call<RegisterResponse>
+
+    @POST("api/login")
+    fun loginUser(@Body request: LoginRequest): Call<LoginResponse>
+
+    @Multipart
+    @POST("api/lamar")
+    fun kirimLamaran(
+        @Part("user_id") userId: RequestBody,
+        @Part("lowongan_id") lowonganId: RequestBody,
+        @Part("nama") nama: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("telepon") telepon: RequestBody,
+        @Part("pendidikan") pendidikan: RequestBody,
+        @Part cv: MultipartBody.Part
+    ): Call<LamaranResponse>
+
+    @GET("lamaran/user/{user_id}")
+    fun getLamaran(@Path("user_id") userId: Int): Call<LamaranResponse>
+
+
+
+
+
 }
+
+
+

@@ -15,10 +15,10 @@ class AdapterDaftarLowongan (
     private val context: Context
 ) : RecyclerView.Adapter<AdapterDaftarLowongan.ViewHolder>(){
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView){
-        val nmlowongan: TextView = itemView.findViewById(R.id.txtPosisi)
-        val nmperusahaan: TextView = itemView.findViewById(R.id.txtPerusahaan)
-        val nmlokasi: TextView = itemView.findViewById(R.id.txtLokasi)
-        val btnlhtdetail = itemView.findViewById<Button>(R.id.btnDetail)
+        val nmlowongan: TextView = itemView.findViewById(R.id.txtPosisiusr)
+        val nmperusahaan: TextView = itemView.findViewById(R.id.txtPerusahaanusr)
+        val nmlokasi: TextView = itemView.findViewById(R.id.txtLokasiusr)
+        val btnlhtdetail = itemView.findViewById<Button>(R.id.btnDetailusr)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,12 +32,20 @@ class AdapterDaftarLowongan (
         holder.nmlowongan.text = item.nama
         holder.nmperusahaan.text= item.perusahaan
         holder.nmlokasi.text= item.lokasi
-
         holder.btnlhtdetail.setOnClickListener {
-            context.startActivity(Intent(context, DetailLowonganActivity::class.java))
+
+            val intent = Intent(context, DetailLowonganActivity::class.java)
+            intent.putExtra("lowongan_id", item.id)
+            intent.putExtra("nama", item.nama)
+            intent.putExtra("lokasi", item.lokasi)
+            intent.putExtra("deskripsi", item.deskripsi)
+            intent.putExtra("perusahaan", item.perusahaan)
+            intent.putExtra("kualifikasi", item.kualifikasi)
+            intent.putExtra("periode", item.periode)
+            context.startActivity(intent)
+
         }
     }
-
     override fun getItemCount(): Int {
         return mlist.size
     }

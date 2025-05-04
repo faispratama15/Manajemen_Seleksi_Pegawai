@@ -8,7 +8,7 @@
     android:layout_marginBottom="12dp">
 
     <TextView
-        android:id="@+id/txtPosisi"
+        android:id="@+id/txtPosisiusr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Staff IT"
@@ -17,7 +17,7 @@
         android:textColor="#000000" />
 
     <TextView
-        android:id="@+id/txtPerusahaan"
+        android:id="@+id/txtPerusahaanusr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PT Teknologi Nusantara"
@@ -26,7 +26,7 @@
         android:layout_marginTop="4dp" />
 
     <TextView
-        android:id="@+id/txtLokasi"
+        android:id="@+id/txtLokasiusr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Yogyakarta"
@@ -35,7 +35,7 @@
         android:layout_marginTop="2dp" />
 
     <Button
-        android:id="@+id/btnDetail"
+        android:id="@+id/btnDetailusr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lihat Detail"
