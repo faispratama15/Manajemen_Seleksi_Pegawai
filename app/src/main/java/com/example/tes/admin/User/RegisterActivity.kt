@@ -102,9 +102,8 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
 
-
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                Toast.makeText(this@RegisterActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, "Perbaiki Password anda", Toast.LENGTH_SHORT).show()
             }
         })
 

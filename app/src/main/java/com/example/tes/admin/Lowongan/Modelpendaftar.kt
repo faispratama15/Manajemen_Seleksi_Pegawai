@@ -1,16 +1,15 @@
 package com.example.tes.admin.Lowongan
 
-class Modelpendaftar (
+import java.io.Serializable
 
-    val  id: String ="",
-    val  namalengkap: String="",
-    val lowonganji: String="",
-    val email: String="",
-    val nomortelepon: String = "",
-    val pendidikanterakhir: String="",
-
-)
-
-
-
-
+data class Modelpendaftar(
+    val id: Int,
+    val user_id: Int,
+    val lowongan_id: Int,
+    val nama: String,
+    val email: String,
+    val telepon: String,
+    val pendidikan: String,
+    val cv: String?,
+    val user: User
+) : Serializable

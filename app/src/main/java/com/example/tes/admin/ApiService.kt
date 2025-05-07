@@ -2,10 +2,15 @@
 package com.example.tes.admin
 
 import LamaranResponse
+import com.example.tes.admin.Lowongan.GetPendaftarResponse
+import com.example.tes.admin.Lowongan.Modelpendaftar
+import com.example.tes.admin.User.CekLamaranResponse
+import com.example.tes.admin.User.ModelDaftarLamaran
 import com.example.tes.admin.User.LoginRequest
 import com.example.tes.admin.User.LoginResponse
 import com.example.tes.admin.User.RegisterRequest
 import com.example.tes.admin.User.RegisterResponse
+import com.example.tes.admin.User.UserProfileResponse
 import com.example.tes.admin.soal.GetResponeBatch
 import com.example.tes.admin.soal.GetResponseSoal
 import okhttp3.MultipartBody
@@ -14,9 +19,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -115,14 +118,27 @@ interface ApiService {
         @Part cv: MultipartBody.Part
     ): Call<LamaranResponse>
 
-    @GET("lamaran/user/{user_id}")
-    fun getLamaran(@Path("user_id") userId: Int): Call<LamaranResponse>
 
 
+    @GET("api/cek-lamaran")
+    fun cekLamaran(
+        @Query("user_id") userId: Int,
+        @Query("lowongan_id") lowonganId: Int
+    ): Call<CekLamaranResponse>
 
+    @GET("api/lamaran/user/{id}")
+    fun getLamaranByUserId(@Path("id") userId: Int): Call<List<ModelDaftarLamaran>>
 
+    @GET("api/lowongan/{id}/pendaftar")
+    fun getPendaftarByLowongan(
+        @Path("id") lowonganId: Int
+    ): Call<GetPendaftarResponse>
+
+    @GET("user/profile")
+    fun getUserProfile(@Header("Authorization") token: String): Call<UserProfileResponse>
 
 }
+
 
 
 

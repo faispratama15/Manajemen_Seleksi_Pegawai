@@ -16,7 +16,5 @@ class Admin_daftarSoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.admin_daftarsoal)
-
     }
-
 }

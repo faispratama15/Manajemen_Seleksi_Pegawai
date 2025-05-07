@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,15 +45,9 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Cek login admin secara lokal (tanpa API)
+            // Cek login admin secara lokal
             if (username == "admin123" && password == "adminpass") {
-                val sharedPref = getSharedPreferences("user_session", MODE_PRIVATE)
-                with(sharedPref.edit()) {
-                    putInt("user_id", 0) // admin = 0
-                    putString("token", "admin_token_dummy")
-                    apply()
-                }
-
+                saveUserSession(0, "admin_token_dummy", "Admin", "admin@example.com", "0000000000")
                 Toast.makeText(this, "Login Admin berhasil", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
@@ -61,53 +56,58 @@ class LoginActivity : AppCompatActivity() {
 
             // Login via API
             val loginRequest = LoginRequest(username, password)
+            ApiClient.instance.loginUser(loginRequest).enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                    Log.d("LoginResponse", "Response: ${response.body()}")
 
-            ApiClient.instance.loginUser(loginRequest)
-                .enqueue(object : Callback<LoginResponse> {
-                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                        Log.d("LoginResponse", "Response body: ${response.body()}")
-                        Log.d("LoginResponse", "Response code: ${response.code()}")
+                    if (response.isSuccessful) {
+                        val loginResponse = response.body()
+                        if (loginResponse != null &&
+                            loginResponse.status == "success" &&
+                            !loginResponse.token.isNullOrEmpty()
+                        ) {
+                            val userData = loginResponse.data
+                            val sharedPref = getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
-                        if (response.isSuccessful) {
-                            val loginResponse = response.body()
-                            Log.d("LoginDebug", "data: ${loginResponse?.data}")
-                            Log.d("LoginDebug", "user id: ${loginResponse?.data?.id}")
-
-                            if (loginResponse != null &&
-                                loginResponse.status == "success" &&
-                                !loginResponse.token.isNullOrEmpty()
-                            ) {
-                                val token = loginResponse.token
-                                val userId = loginResponse.data?.id ?: -1
-                                Log.d("LoginDebug", "Parsed User ID: $userId")
-
-                                if (userId != -1) {
-                                    val sharedPref = getSharedPreferences("user_session", MODE_PRIVATE)
-                                    with(sharedPref.edit()) {
-                                        putInt("user_id", userId)
-                                        putString("token", token)
-                                        apply()
-                                    }
-                                    Log.d("LoginDebug", "User ID berhasil disimpan: $userId")
-
-                                    Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
-                                    startActivity(Intent(this@LoginActivity, MainActivity2::class.java))
-                                    finish()
-                                } else {
-                                    Toast.makeText(this@LoginActivity, "User ID tidak valid", Toast.LENGTH_SHORT).show()
-                                }
-                            } else {
-                                Toast.makeText(this@LoginActivity, "Login gagal: ${loginResponse?.message}", Toast.LENGTH_SHORT).show()
+                            // Menyimpan data pengguna ke SharedPreferences
+                            with(sharedPref.edit()) {
+                                putInt("user_id", userData?.id ?: -1)
+                                putString("token", loginResponse.token)
+                                putString("nama", userData?.nama ?: "")  // Pastikan nilai ini tidak kosong
+                                putString("email", userData?.email ?: "")  // Pastikan nilai ini tidak kosong
+                                putString("telepon", userData?.no_hp ?: "")  // Pastikan nilai ini tidak kosong
+                                apply()  // Jangan lupa untuk apply() setelah menyimpan data
                             }
-                        } else {
-                            Toast.makeText(this@LoginActivity, "Login gagal dengan status: ${response.code()}", Toast.LENGTH_SHORT).show()
-                        }
-                    }
 
-                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@LoginActivity, MainActivity2::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(this@LoginActivity, "Login gagal: ${loginResponse?.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Username atau password salah", Toast.LENGTH_SHORT).show()
                     }
-                })
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("LoginError", "Throwable: ${t.message}")
+                }
+            })
+        }
+    }
+
+    // Fungsi untuk menyimpan data user ke SharedPreferences
+    private fun saveUserSession(userId: Int, token: String?, nama: String?, email: String?, telepon: String?) {
+        val sharedPref = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putInt("user_id", userId)
+            putString("token", token)
+            putString("nama", nama)
+            putString("email", email)
+            putString("telepon", telepon)
+            apply()
         }
     }
 }

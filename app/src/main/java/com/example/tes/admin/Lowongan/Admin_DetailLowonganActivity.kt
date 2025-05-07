@@ -3,6 +3,7 @@ package com.example.tes.admin.Lowongan
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -36,9 +37,17 @@ class Admin_DetailLowonganActivity : AppCompatActivity() {
         Deskripsi.setText(intent.getStringExtra("deskripsi"))
         Kualifikasi.setText(intent.getStringExtra("kualifikasi"))
 
+        val lowonganId = intent.getIntExtra("lowongan_id", -1)
+
+
         btnlihatpendaftar.setOnClickListener {
-            startActivity(Intent(this, Admin_DaftarPendaftarActivity::class.java))
+            val intent = Intent(this, Admin_DaftarPendaftarActivity::class.java)
+            intent.putExtra("lowongan_id", lowonganId)
+            Log.d("DetailLowongan", "Kirim lowongan_id: $lowonganId")
+            startActivity(intent)
         }
+
+
 
         btnkembali.setOnClickListener {
             finish()

@@ -28,7 +28,5 @@ class MainActivity2 : AppCompatActivity() {
         profil.setOnClickListener{
             viewpager.currentItem=2
         }
-
-
     }
 }

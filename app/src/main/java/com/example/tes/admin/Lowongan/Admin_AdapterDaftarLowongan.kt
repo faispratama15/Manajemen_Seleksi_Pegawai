@@ -39,6 +39,8 @@ class Admin_AdapterDaftarLowongan(
 
         holder.btnlhtdetail.setOnClickListener {
             val intent = Intent(context, Admin_DetailLowonganActivity::class.java)
+
+            intent.putExtra("lowongan_id", item.id)
             intent.putExtra("nama", item.nama)
             intent.putExtra("lokasi", item.lokasi)
             intent.putExtra("deskripsi", item.deskripsi)

@@ -1,9 +1,8 @@
+package com.example.tes.admin.User
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,60 +12,64 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tes.R
 import com.example.tes.admin.ApiClient
-import com.example.tes.admin.User.AdapterLamaran
-import com.example.tes.admin.User.ModelDaftarLamaran
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LamaranFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AdapterLamaran
-    private var daftarLamaran: ArrayList<ModelDaftarLamaran> = ArrayList()
+    private lateinit var adapter: LamaranAdapter
+    private val listLamaran = mutableListOf<ModelDaftarLamaran>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.lamaran_saya, container, false)
-        recyclerView = view.findViewById(R.id.recyclerLamaran)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val userId = sharedPreferences.getInt("user_id", -1)
-
-        if (userId != -1) {
-            getDataLamaran(userId)
-        }
-
-        return view
+        return inflater.inflate(R.layout.lamaran_saya, container, false)
     }
 
-    private fun getDataLamaran(userId: Int) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val client = ApiClient.instance.getLamaran(userId)
-        client.enqueue(object : Callback<LamaranResponse> {
+        recyclerView = view.findViewById(R.id.recyclerLamaran)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = LamaranAdapter(listLamaran, requireContext())
+        recyclerView.adapter = adapter
+
+        val sharedPref = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val userId = sharedPref.getInt("user_id", -1)
+
+        if (userId != -1) {
+            getLamaran(userId)
+        } else {
+            Toast.makeText(requireContext(), "User ID tidak ditemukan", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun getLamaran(userId: Int) {
+        ApiClient.instance.getLamaranByUserId(userId).enqueue(object : Callback<List<ModelDaftarLamaran>> {
             override fun onResponse(
-                call: Call<LamaranResponse>,
-                response: Response<LamaranResponse>
+                call: Call<List<ModelDaftarLamaran>>,
+                response: Response<List<ModelDaftarLamaran>>
             ) {
-                if (response.isSuccessful && response.body() != null) {
-                    val data = response.body()!!.data
-                    val newData = data.map {
-                        ModelDaftarLamaran(
-                            posisi = it.lowongan?.nama ?: "Tanpa Posisi",
-                            Perusahaan = it.lowongan?.perusahaan ?: "Tanpa Perusahaan",
-                            ModelDaftarLowongan_id = it.id
-                        )
-                    }
 
-                    daftarLamaran.clear()
-                    daftarLamaran.addAll(newData)
-                    adapter = AdapterLamaran(daftarLamaran, requireContext())
-                    recyclerView.adapter = adapter
+                Log.d("LamaranFragment", "Response code: ${response.code()}")
+                Log.d("LamaranFragment", "Response: ${response.body()}")
+                if (response.isSuccessful && response.body() != null) {
+                    listLamaran.clear()
+                    listLamaran.addAll(response.body()!!)
+                    adapter.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(requireContext(), "Gagal memuat data lamaran", Toast.LENGTH_SHORT).show()
+                    Log.e("LamaranSaya", "Response error: ${response.code()} - ${response.message()}")
+                    Log.e("LamaranSaya", "Response body: ${response.body()}")
                 }
             }
 
-            override fun onFailure(call: Call<LamaranResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "Gagal memuat data: ${t.message}", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<List<ModelDaftarLamaran>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e("LamaranSaya", "Failure: ${t.message}")
             }
         })
     }

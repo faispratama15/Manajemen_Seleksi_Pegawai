@@ -63,6 +63,35 @@ class FormulirActivity : AppCompatActivity() {
             startActivityForResult(Intent.createChooser(intent, "Pilih File CV"), PICK_PDF_REQUEST)
         }
 
+        fun kirimLamaran(userId: Int, nama: String, email: String, telepon: String, pendidikan: String) {
+            val requestFile = RequestBody.create("application/pdf".toMediaTypeOrNull(), selectedCvFile!!)
+            val body = MultipartBody.Part.createFormData("cv", selectedCvFile!!.name, requestFile)
+            val userIdRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), userId.toString())
+            val lowonganIdRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), lowonganId.toString())
+            val namaRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), nama)
+            val emailRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), email)
+            val teleponRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), telepon)
+            val pendidikanRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), pendidikan)
+
+            ApiClient.instance.kirimLamaran(
+                userIdRequest, lowonganIdRequest, namaRequest, emailRequest,
+                teleponRequest, pendidikanRequest, body
+            ).enqueue(object : Callback<LamaranResponse> {
+                override fun onResponse(call: Call<LamaranResponse>, response: Response<LamaranResponse>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@FormulirActivity, "Lamaran berhasil dikirim", Toast.LENGTH_SHORT).show()
+                        finish()
+                    } else {
+                        Toast.makeText(this@FormulirActivity, "Gagal mengirim lamaran", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<LamaranResponse>, t: Throwable) {
+                    Toast.makeText(this@FormulirActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
         btnKirim.setOnClickListener {
             val nama = edtNama.text.toString()
             val email = edtEmail.text.toString()
@@ -84,43 +113,27 @@ class FormulirActivity : AppCompatActivity() {
 
             if (userId == -1) {
                 Toast.makeText(this, "User belum login", Toast.LENGTH_SHORT).show()
-                Log.e("FormulirActivity", "User ID tidak ditemukan di shared preferences")
                 return@setOnClickListener
             }
 
-            Log.d("FormulirActivity", "User ID: $userId, Lowongan ID: $lowonganId")
 
-            val requestFile = RequestBody.create("application/pdf".toMediaTypeOrNull(), selectedCvFile!!)
-            val body = MultipartBody.Part.createFormData("cv", selectedCvFile!!.name, requestFile)
-
-            val userIdRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), userId.toString())
-            val lowonganIdRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), lowonganId.toString())
-            val namaRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), nama)
-            val emailRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), email)
-            val teleponRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), telepon)
-            val pendidikanRequest = RequestBody.create("text/plain".toMediaTypeOrNull(), pendidikan)
-
-            ApiClient.instance.kirimLamaran(
-                userIdRequest, lowonganIdRequest, namaRequest, emailRequest,
-                teleponRequest, pendidikanRequest, body
-            ).enqueue(object : Callback<LamaranResponse> {
-                override fun onResponse(call: Call<LamaranResponse>, response: Response<LamaranResponse>) {
-                    if (response.isSuccessful) {
-                        Toast.makeText(this@FormulirActivity, "Lamaran berhasil dikirim", Toast.LENGTH_SHORT).show()
-                        finish()
-                    } else {
-                        val errorBody = response.errorBody()?.string()
-                        Log.e("Lamaran", "Response error: $errorBody")
-                        Toast.makeText(this@FormulirActivity, errorBody ?: "Error tidak diketahui", Toast.LENGTH_LONG).show()
+            ApiClient.instance.cekLamaran(userId, lowonganId)
+                .enqueue(object : Callback<CekLamaranResponse> {
+                    override fun onResponse(call: Call<CekLamaranResponse>, response: Response<CekLamaranResponse>) {
+                        if (response.isSuccessful && response.body()?.sudah_melamar == true) {
+                            Toast.makeText(this@FormulirActivity, "Anda sudah melamar lowongan ini.", Toast.LENGTH_LONG).show()
+                        } else {
+                            // Lanjut kirim lamaran
+                            kirimLamaran(userId, nama, email, telepon, pendidikan)
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<LamaranResponse>, t: Throwable) {
-                    Toast.makeText(this@FormulirActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                    Log.e("Lamaran", "Failure: ${t.message}")
-                }
-            })
+                    override fun onFailure(call: Call<CekLamaranResponse>, t: Throwable) {
+                        Toast.makeText(this@FormulirActivity, "Gagal mengecek status lamaran", Toast.LENGTH_SHORT).show()
+                    }
+                })
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

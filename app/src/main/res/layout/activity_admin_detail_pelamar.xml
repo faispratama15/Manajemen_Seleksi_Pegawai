@@ -25,55 +25,47 @@
             android:layout_marginBottom="24dp" />
 
         <!-- Nama Lengkap -->
-        <EditText
-            android:id="@+id/edtNama"
+        <TextView
+            android:id="@+id/txtNamaplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama Lengkap"
-            android:inputType="textPersonName"
+            android:text="Nama Lengkap"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:backgroundTint="#FF9800"
+            android:textSize="16sp"
             android:layout_marginBottom="12dp" />
 
         <!-- Email -->
-        <EditText
-            android:id="@+id/edtEmail"
+        <TextView
+            android:id="@+id/txtEmailplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:text="Email"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:backgroundTint="#FF9800"
+            android:textSize="16sp"
             android:layout_marginBottom="12dp" />
 
         <!-- Nomor Telepon -->
-        <EditText
-            android:id="@+id/edtTelepon"
+        <TextView
+            android:id="@+id/txtTeleponplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nomor Telepon"
-            android:inputType="phone"
+            android:text="Nomor Telepon"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:backgroundTint="#FF9800"
+            android:textSize="16sp"
             android:layout_marginBottom="12dp" />
 
         <!-- Pendidikan Terakhir -->
-        <EditText
-            android:id="@+id/edtPendidikan"
+        <TextView
+            android:id="@+id/txtPendidikanplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pendidikan Terakhir"
-            android:inputType="text"
+            android:text="Pendidikan Terakhir"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:backgroundTint="#FF9800"
+            android:textSize="16sp"
             android:layout_marginBottom="12dp" />
 
         <Button
-            android:id="@+id/btnUploadCV"
+            android:id="@+id/btnUploadCVplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lihat CV"
@@ -82,7 +74,7 @@
             android:layout_marginBottom="20dp" />
 
         <Button
-            android:id="@+id/btnKembali"
+            android:id="@+id/btnKembaliplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kembali"
@@ -91,7 +83,7 @@
             android:layout_marginBottom="12dp" />
 
         <Button
-            android:id="@+id/btnAccPelamar"
+            android:id="@+id/btnAccPelamarplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ACC Pelamar"

@@ -11,8 +11,8 @@ class Admin_DetailPelamarActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_admin_detail_pelamar)
 
-        val btnkembali = findViewById<Button>(R.id.btnKembali)
-        val acc = findViewById<Button>(R.id.btnAccPelamar)
+        val btnkembali = findViewById<Button>(R.id.btnKembaliplr)
+        val acc = findViewById<Button>(R.id.btnAccPelamarplr)
 
         acc.setOnClickListener {
             finish()
