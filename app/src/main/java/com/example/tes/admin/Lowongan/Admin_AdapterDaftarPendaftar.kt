@@ -31,11 +31,10 @@ class Admin_AdapterDaftarPendaftar(
         holder.nm.text = item.user.nama
 
         holder.btnDetail.setOnClickListener {
-            val intent = Intent(context, DetailPendaftarActivity::class.java)
-            intent.putExtra("pendaftar", item)
+            val intent = Intent(context, Admin_DetailPelamarActivity::class.java)
+            intent.putExtra("pendaftar", item as java.io.Serializable)
             context.startActivity(intent)
         }
-
     }
 
     override fun getItemCount(): Int = mlist.size

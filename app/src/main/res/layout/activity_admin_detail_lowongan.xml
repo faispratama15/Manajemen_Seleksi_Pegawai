@@ -42,15 +42,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true" />
 
-            <Button
-                android:id="@+id/btnLihatPendaftarForAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="Lihat Pendaftar"
-                android:backgroundTint="#4CAF50"
-                android:textColor="#FFFFFF" />
         </RelativeLayout>
 
         <TextView
@@ -127,8 +118,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:backgroundTint="#FF9800"
             android:text="Kembali"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#FF9800" />
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnLihatPendaftarForAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#3362C1"
+            android:text="Lihat Pendaftar"
+
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
 </RelativeLayout>

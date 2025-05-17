@@ -9,9 +9,9 @@
     <LinearLayout
         android:id="@+id/layoutEditProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/border_button_orange"
         android:orientation="vertical">
 
@@ -26,29 +26,63 @@
             android:layout_marginBottom="24dp" />
 
         <EditText
-            android:id="@+id/edtNama"
+            android:id="@+id/edtNamaProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:hint="Nama Lengkap"
+            android:hint="Nama"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:background="@drawable/border_button_orange"
             android:layout_marginBottom="16dp" />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/edtNik"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:hint="Email"
+            android:hint="Nik"
             android:inputType="textEmailAddress"
             android:padding="12dp"
             android:background="@drawable/border_button_orange"
             android:layout_marginBottom="16dp" />
 
         <EditText
-            android:id="@+id/edtTelepon"
+            android:id="@+id/edtAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/border_button_orange"
+            android:layout_marginBottom="16dp"
+            android:hint="Alamat" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupJkl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/border_button_orange"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioLaki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laki-laki" />
+
+            <RadioButton
+                android:id="@+id/radioPerempuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perempuan" />
+        </RadioGroup>
+
+
+        <EditText
+            android:id="@+id/edtTeleponprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -75,16 +109,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:hint="Password"
-            android:inputType="phone"
+            android:inputType="textPassword"
+
             android:padding="12dp"
             android:background="@drawable/border_button_orange"
             android:layout_marginBottom="16dp" />
 
         <Button
-            android:id="@+id/btnSimpan"
+            android:id="@+id/btnSimpanprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="100dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:text="Simpan Perubahan"
@@ -96,7 +131,7 @@
             android:id="@+id/backprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="100dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:text="Kembali"

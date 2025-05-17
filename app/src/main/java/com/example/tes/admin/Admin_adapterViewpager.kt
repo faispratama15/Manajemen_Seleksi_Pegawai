@@ -10,9 +10,6 @@ class Admin_adapterViewpager(fragmentActivity: FragmentActivity) : FragmentState
     private val fragmentlist = listOf(
         Admin_DaftarLowonganFragment(),
         Admin_SoalFragment(),
-        ProfileFragment(),
-
-
     )
 
     override fun getItemCount(): Int = fragmentlist.size

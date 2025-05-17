@@ -1,6 +1,7 @@
 data class LamaranResponse(
     val success: Boolean,
-    val data: List<LamaranData>
+    val message: String,
+    val data: LamaranData
 )
 
 data class LamaranData(

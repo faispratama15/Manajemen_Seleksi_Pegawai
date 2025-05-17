@@ -85,20 +85,15 @@ class RegisterActivity : AppCompatActivity() {
 
         ApiClient.instance.registerUser(request).enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
-                Log.d("API", "Kode Response: ${response.code()}")
-                Log.d("API", "Isi Body: ${response.body()}")
-                Log.d("API", "Isi Error Body: ${response.errorBody()?.string()}")
-
                 if (response.isSuccessful) {
                     val registerResponse = response.body()
-                    val userData = registerResponse?.data
-
                     Toast.makeText(this@RegisterActivity, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show()
-                    navigateToLogin(userData)
+                    navigateToLogin(registerResponse?.data)
                     clearFields()
-
                 } else {
-                    Toast.makeText(this@RegisterActivity, "Registrasi Gagal. Coba lagi.", Toast.LENGTH_SHORT).show()
+                    val errorMsg = response.errorBody()?.string()
+                    Log.e("REGISTER_ERROR", "Gagal: $errorMsg")
+                    Toast.makeText(this@RegisterActivity, "Gagal: $errorMsg", Toast.LENGTH_LONG).show()
                 }
             }
 

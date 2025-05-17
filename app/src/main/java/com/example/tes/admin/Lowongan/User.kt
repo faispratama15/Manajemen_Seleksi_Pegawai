@@ -2,7 +2,6 @@ package com.example.tes.admin.Lowongan
 
 
 import java.io.Serializable
-
 data class User(
     val id: Int,
     val nik: String,

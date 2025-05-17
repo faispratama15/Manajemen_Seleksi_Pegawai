@@ -11,8 +11,16 @@ data class LoginResponse(
 data class UserData2(
     val id: Int,
     val nama: String,
+    val nik: String,
+    val username: String,
     val email: String,
-    val no_hp: String
+    val telepon: String,
+    val alamat: String,
+    val jkl: String
 )
+
+
+
+
 
 

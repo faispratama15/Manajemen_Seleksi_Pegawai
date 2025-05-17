@@ -12,6 +12,6 @@ data class UserData(
     val nama: String,
     val alamat: String,
     val jkl: String,
-    val no_hp: String,
+    val telepon: String,
     val username: String
 )

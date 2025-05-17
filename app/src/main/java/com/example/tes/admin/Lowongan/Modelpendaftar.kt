@@ -1,15 +1,18 @@
 package com.example.tes.admin.Lowongan
 
+
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+
 
 data class Modelpendaftar(
     val id: Int,
-    val user_id: Int,
-    val lowongan_id: Int,
+    @SerializedName("user_id") val userId: Int,
+    @SerializedName("lowongan_id") val lowonganId: Int,
     val nama: String,
     val email: String,
     val telepon: String,
     val pendidikan: String,
-    val cv: String?,
+    @SerializedName("cv") val cv: String?,
     val user: User
 ) : Serializable

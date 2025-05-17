@@ -45,16 +45,25 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Cek login admin secara lokal
+            // Login admin lokal
             if (username == "admin123" && password == "adminpass") {
-                saveUserSession(0, "admin_token_dummy", "Admin", "admin@example.com", "0000000000")
+                saveUserSession(
+                    userId = 0,
+                    token = "admin_token_dummy",
+                    nama = "Admin",
+                    nik = "-",
+                    telepon = "0000000000",
+                    username = "admin123",
+                    alamat = "Admin",
+                    jkl = "Laki-laki"
+                )
                 Toast.makeText(this, "Login Admin berhasil", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
                 return@setOnClickListener
             }
 
-            // Login via API
+            // Login API
             val loginRequest = LoginRequest(username, password)
             ApiClient.instance.loginUser(loginRequest).enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -66,18 +75,19 @@ class LoginActivity : AppCompatActivity() {
                             loginResponse.status == "success" &&
                             !loginResponse.token.isNullOrEmpty()
                         ) {
-                            val userData = loginResponse.data
-                            val sharedPref = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+                            val user = loginResponse.data
 
-                            // Menyimpan data pengguna ke SharedPreferences
-                            with(sharedPref.edit()) {
-                                putInt("user_id", userData?.id ?: -1)
-                                putString("token", loginResponse.token)
-                                putString("nama", userData?.nama ?: "")  // Pastikan nilai ini tidak kosong
-                                putString("email", userData?.email ?: "")  // Pastikan nilai ini tidak kosong
-                                putString("telepon", userData?.no_hp ?: "")  // Pastikan nilai ini tidak kosong
-                                apply()  // Jangan lupa untuk apply() setelah menyimpan data
-                            }
+                            // Simpan ke SharedPreferences
+                            saveUserSession(
+                                userId = user?.id ?: -1,
+                                token = loginResponse.token,
+                                nama = user?.nama ?: "",
+                                nik = user?.nik ?: "",
+                                telepon = user?.telepon ?: "",
+                                username = user?.username ?: "",
+                                alamat = user?.alamat ?: "",
+                                jkl = user?.jkl ?: ""
+                            )
 
                             Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@LoginActivity, MainActivity2::class.java))
@@ -87,6 +97,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     } else {
                         Toast.makeText(this@LoginActivity, "Username atau password salah", Toast.LENGTH_SHORT).show()
+                        Log.e("LoginError", "Response not successful: ${response.errorBody()?.string()}")
                     }
                 }
 
@@ -98,15 +109,28 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk menyimpan data user ke SharedPreferences
-    private fun saveUserSession(userId: Int, token: String?, nama: String?, email: String?, telepon: String?) {
+    // ✅ Fungsi menyimpan sesi login user
+    private fun saveUserSession(
+        userId: Int,
+        token: String?,
+        nama: String?,
+        nik: String?,
+        telepon: String?,
+        username: String?,
+        alamat: String?,
+        jkl: String?
+    ) {
         val sharedPref = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+
         with(sharedPref.edit()) {
             putInt("user_id", userId)
             putString("token", token)
             putString("nama", nama)
-            putString("email", email)
+            putString("nik", nik)
             putString("telepon", telepon)
+            putString("username", username)
+            putString("alamat", alamat)
+            putString("jkl", jkl)
             apply()
         }
     }

@@ -114,7 +114,6 @@ class Admin_editSoalActivity : AppCompatActivity() {
                     Toast.makeText(this@Admin_editSoalActivity, "Gagal edit soal", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<SendResponse>, t: Throwable) {
                 Toast.makeText(this@Admin_editSoalActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }

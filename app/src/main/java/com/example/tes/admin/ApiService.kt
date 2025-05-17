@@ -3,7 +3,6 @@ package com.example.tes.admin
 
 import LamaranResponse
 import com.example.tes.admin.Lowongan.GetPendaftarResponse
-import com.example.tes.admin.Lowongan.Modelpendaftar
 import com.example.tes.admin.User.CekLamaranResponse
 import com.example.tes.admin.User.ModelDaftarLamaran
 import com.example.tes.admin.User.LoginRequest
@@ -15,10 +14,13 @@ import com.example.tes.admin.soal.GetResponeBatch
 import com.example.tes.admin.soal.GetResponseSoal
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.FieldMap
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -134,8 +136,16 @@ interface ApiService {
         @Path("id") lowonganId: Int
     ): Call<GetPendaftarResponse>
 
-    @GET("user/profile")
+    @GET("api/user-profile")
     fun getUserProfile(@Header("Authorization") token: String): Call<UserProfileResponse>
+
+    @FormUrlEncoded
+    @POST("api/user/update/{id}")
+    fun updateUser(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @FieldMap data: Map<String, String>
+    ): Call<ResponseBody>
 
 }
 
