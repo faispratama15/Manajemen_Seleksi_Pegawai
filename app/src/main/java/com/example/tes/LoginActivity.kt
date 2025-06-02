@@ -68,15 +68,9 @@ class LoginActivity : AppCompatActivity() {
                         ) {
                             val userData = loginResponse.data
                             val sharedPref = getSharedPreferences("user_session", Context.MODE_PRIVATE)
-
-                            // Menyimpan data pengguna ke SharedPreferences
                             with(sharedPref.edit()) {
-                                putInt("user_id", userData?.id ?: -1)
-                                putString("token", loginResponse.token)
-                                putString("nama", userData?.nama ?: "")  // Pastikan nilai ini tidak kosong
-                                putString("email", userData?.email ?: "")  // Pastikan nilai ini tidak kosong
-                                putString("telepon", userData?.no_hp ?: "")  // Pastikan nilai ini tidak kosong
-                                apply()  // Jangan lupa untuk apply() setelah menyimpan data
+                                putInt("user_id", userData?.id ?: 1)
+                                apply()
                             }
 
                             Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()

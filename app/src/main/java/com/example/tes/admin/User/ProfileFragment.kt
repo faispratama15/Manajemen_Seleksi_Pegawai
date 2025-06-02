@@ -1,5 +1,6 @@
 package com.example.tes.admin.User
 
+import android.annotation.SuppressLint
 import retrofit2.Callback
 import retrofit2.Response
 import android.content.Context
@@ -7,7 +8,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import retrofit2.Call
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,13 @@ import com.example.tes.R
 import com.example.tes.admin.ApiClient
 
 class ProfileFragment : Fragment() {
+    private var user: UserData? = null
+    private lateinit var txtNama: TextView
+    private lateinit var txtAlamat: TextView
+    private lateinit var txtTelepon: TextView
+    private var userId: Int = -1
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,54 +34,32 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.profil, container, false)
 
-        val txtNama = view.findViewById<TextView>(R.id.txtNama)
-        val txtEmail = view.findViewById<TextView>(R.id.txtEmail)
-        val txtTelepon = view.findViewById<TextView>(R.id.txtTelepon)
+        txtNama = view.findViewById(R.id.txtNama)
+        txtAlamat = view.findViewById(R.id.txtAlamat)
+        txtTelepon = view.findViewById(R.id.txtTelepon)
+
         val btnEdit = view.findViewById<Button>(R.id.btnEditProfil)
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
 
         val sharedPref = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
-        val token = sharedPref.getString("token", null)
-
-        Log.d("ProfileFragment", "Token: $token")
-
-        if (token.isNullOrEmpty()) {
-
+        userId = sharedPref.getInt("user_id", -1)
+        if (userId == -1) {
             navigateToLogin()
             return view
         }
 
-        ApiClient.instance.getUserProfile("Bearer $token").enqueue(object : Callback<UserProfileResponse> {
-            override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
-                if (response.isSuccessful) {
-                    val userProfile = response.body()?.data
-                    if (userProfile != null) {
+        getUser(userId)
 
-                        txtNama.text = userProfile.nama ?: "Nama tidak ditemukan"
-                        txtEmail.text = userProfile.email ?: "Email tidak ditemukan"
-                        txtTelepon.text = userProfile.no_hp ?: "Telepon tidak ditemukan"
-                    } else {
-                        Toast.makeText(requireContext(), "Data profil tidak lengkap", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-
-                    Log.e("ProfileFragment", "Error: ${response.errorBody()?.string()}")
-                    Toast.makeText(requireContext(), "Gagal mengambil data profil. Coba lagi.", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
-
-                Log.e("ProfileFragment", "Error: ${t.message}")
-                Toast.makeText(requireContext(), "Terjadi kesalahan: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        // Tombol Edit Profil
         btnEdit.setOnClickListener {
             val intent = Intent(requireContext(), EditProfilActivity::class.java)
+            intent.putExtra("user_id", user?.id)
+            intent.putExtra("nama", user?.nama)
+            intent.putExtra("alamat", user?.alamat)
+            intent.putExtra("telepon", user?.no_hp)
+            intent.putExtra("username", user?.username)
             startActivity(intent)
         }
+
 
         btnLogout.setOnClickListener {
             logout(sharedPref)
@@ -98,5 +82,32 @@ class ProfileFragment : Fragment() {
         view?.postDelayed({
             navigateToLogin()
         }, 1000)
+    }
+
+    @Override
+    override fun onResume() {
+        super.onResume()
+        getUser(userId)
+    }
+
+    fun getUser(id: Int){
+        ApiClient.instance.getUserProfile(id).enqueue(object : Callback<UserProfileResponse> {
+            override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
+                if (response.isSuccessful) {
+                    user = response.body()?.data!!
+                    if (user != null) {
+                        txtNama.text = user?.nama
+                        txtAlamat.text = user?.alamat
+                        txtTelepon.text = user?.no_hp
+                    } else {
+                        Toast.makeText(requireContext(), "Data user tidak ditemukan", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

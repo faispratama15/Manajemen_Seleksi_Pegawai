@@ -11,5 +11,6 @@ data class Modelpendaftar(
     val telepon: String,
     val pendidikan: String,
     val cv: String?,
+    val status: String,
     val user: User
 ) : Serializable

@@ -31,7 +31,7 @@ class FormulirActivity : AppCompatActivity() {
 
     private var selectedCvFile: File? = null
     private val PICK_PDF_REQUEST = 1001
-    private var lowonganId: Int = -1  // <-- pastikan disimpan di sini
+    private var lowonganId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,6 @@ class FormulirActivity : AppCompatActivity() {
         btnKembali = findViewById(R.id.btnKembali3)
         btnKirim = findViewById(R.id.btnKirim)
 
-        // Ambil ID lowongan dari intent dan simpan ke variabel class
         lowonganId = intent.getIntExtra("lowongan_id", -1)
 
         if (lowonganId == -1) {
@@ -123,7 +122,6 @@ class FormulirActivity : AppCompatActivity() {
                         if (response.isSuccessful && response.body()?.sudah_melamar == true) {
                             Toast.makeText(this@FormulirActivity, "Anda sudah melamar lowongan ini.", Toast.LENGTH_LONG).show()
                         } else {
-                            // Lanjut kirim lamaran
                             kirimLamaran(userId, nama, email, telepon, pendidikan)
                         }
                     }

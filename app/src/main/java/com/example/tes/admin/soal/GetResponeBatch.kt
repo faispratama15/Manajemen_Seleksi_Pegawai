@@ -7,3 +7,9 @@ data class GetResponeBatch(
     val message: String,
     val data: List<ModelBatch>
 )
+
+data class BatchNameResponse(
+    val success: Boolean,
+    val message: String,
+    val data: ModelBatch?
+)

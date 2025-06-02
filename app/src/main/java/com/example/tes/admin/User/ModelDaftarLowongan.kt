@@ -7,5 +7,6 @@ data class ModelDaftarLowongan(
     val lokasi: String,
     val periode: String,
     val deskripsi: String,
-    val kualifikasi: String
+    val kualifikasi: String,
+    val batch_soal_id: Int?
 )

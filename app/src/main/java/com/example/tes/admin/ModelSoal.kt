@@ -8,7 +8,9 @@ class ModelSoal (
     val pil2: String="",
     val pil3: String="",
     val pil4: String="",
-    val jawaban: String=""
+    val jawaban: String="",
+
+    var jawabanUser: String = ""
 )
 
 

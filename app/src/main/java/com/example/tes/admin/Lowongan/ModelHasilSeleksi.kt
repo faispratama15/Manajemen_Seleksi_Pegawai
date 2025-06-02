@@ -1,0 +1,7 @@
+package com.example.tes.admin.Lowongan
+
+data class ModelHasilSeleksi(
+    val id: Int,
+    val nama: String,
+    val skor: Int
+)

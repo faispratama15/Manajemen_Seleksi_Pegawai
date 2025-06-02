@@ -65,7 +65,7 @@
             android:layout_marginBottom="12dp" />
 
         <Button
-            android:id="@+id/btnUploadCVplr"
+            android:id="@+id/btnLihatCVplr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lihat CV"

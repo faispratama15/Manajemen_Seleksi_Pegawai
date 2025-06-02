@@ -1,21 +1,31 @@
 package com.example.tes.admin.User
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tes.R
+import com.example.tes.admin.ApiClient
+import com.example.tes.admin.SendResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class LamaranAdapter(private val lamaranList: List<ModelDaftarLamaran>, requireContext: Context) :
+class LamaranAdapter(private val lamaranList: List<ModelDaftarLamaran>, private val requireContext: Context, private val idUser: Int) :
     RecyclerView.Adapter<LamaranAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val posisiText: TextView = view.findViewById(R.id.tvNamaPosisi)
         val perusahaanText: TextView = view.findViewById(R.id.tvPerusahaan)
-
+        val btnSoal: Button = view.findViewById(R.id.btnSoal)
+        val btnHasil: Button = view.findViewById(R.id.btnLhtHasil)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,12 +36,56 @@ class LamaranAdapter(private val lamaranList: List<ModelDaftarLamaran>, requireC
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val lamaran = lamaranList[position]
-        Log.d("LamaranAdapter", "Posisi: ${lamaran.lowongan.posisi}, Perusahaan: ${lamaran.lowongan.perusahaan}")
+        val lowongan = lamaran.lowongan
 
-        holder.posisiText.text = lamaran.lowongan.posisi
-        holder.perusahaanText.text = lamaran.lowongan.perusahaan
+        holder.posisiText.text = lowongan.nama
+        holder.perusahaanText.text = lowongan.perusahaan
+
+        holder.btnHasil.isEnabled = false
+        holder.btnHasil.setBackgroundColor(Color.GRAY)
+
+        val apiService = ApiClient.instance
+        val btn = holder.btnSoal
+
+        if (lowongan.batch_soal_id == null || lowongan.batch_soal_id == 0) {
+            btn.isEnabled = false
+            btn.setBackgroundColor(Color.GRAY)
+        } else {
+            btn.isEnabled = false
+            btn.setBackgroundColor(Color.GRAY)
+
+            apiService.cekSudahKirim(lamaran.id).enqueue(object : Callback<SendResponse> {
+                override fun onResponse(
+                    call: Call<SendResponse>,
+                    response: Response<SendResponse>
+                ) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val sudahKirim = response.body()!!.success
+                        if (sudahKirim) {
+                            btn.isEnabled = false
+                            btn.setBackgroundColor(Color.GRAY)
+                        } else {
+                            btn.isEnabled = true
+                            btn.setBackgroundColor(Color.parseColor("#4CAF50"))
+                            btn.setOnClickListener {
+                                val intent = Intent(requireContext, SoalActivity::class.java)
+                                intent.putExtra("user_id", idUser)
+                                intent.putExtra("lamaran_id", lamaran.id)
+                                requireContext.startActivity(intent)
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<SendResponse>, t: Throwable) {
+                    Log.e("LamaranAdapter", "Gagal cek status soal: ${t.message}")
+                    btn.isEnabled = false
+                    btn.setBackgroundColor(Color.GRAY)
+                    btn.text = "Error"
+                }
+            })
+        }
     }
 
     override fun getItemCount(): Int = lamaranList.size
 }
-

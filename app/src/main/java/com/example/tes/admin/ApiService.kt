@@ -5,12 +5,14 @@ import LamaranResponse
 import com.example.tes.admin.Lowongan.GetPendaftarResponse
 import com.example.tes.admin.Lowongan.Modelpendaftar
 import com.example.tes.admin.User.CekLamaranResponse
+import com.example.tes.admin.User.HasilSeleksiResponse
 import com.example.tes.admin.User.ModelDaftarLamaran
 import com.example.tes.admin.User.LoginRequest
 import com.example.tes.admin.User.LoginResponse
 import com.example.tes.admin.User.RegisterRequest
 import com.example.tes.admin.User.RegisterResponse
 import com.example.tes.admin.User.UserProfileResponse
+import com.example.tes.admin.soal.BatchNameResponse
 import com.example.tes.admin.soal.GetResponeBatch
 import com.example.tes.admin.soal.GetResponseSoal
 import okhttp3.MultipartBody
@@ -19,6 +21,8 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -51,8 +55,23 @@ interface ApiService {
         @Query("kualifikasi") kualifikasi: String
     ): Call<SendResponse>
 
+    @GET("lowongan/lamaran/mulai-seleksi")
+    fun mulaiSeleksi(
+        @Query("lowongan_id") lowonganId: Int,
+        @Query("batch_soal_id") batchSoalId: Int
+    ): Call<SendResponse>
+
+    @GET("lowongan/lamaran/lihat-hasil")
+    fun getHasilSeleksi(@Query("lowongan_id") lowonganId: Int): Call<HasilSeleksiResponse>
+
     @GET("soal/batch/get")
     fun getBatchSoal(): Call<GetResponeBatch>
+
+    @GET("soal/batch/get/name")
+    fun getBatchNameByLowonganId(
+        @Query("id") id: Int
+    ): Call<BatchNameResponse>
+
 
     @GET("soal/batch/add")
     fun tambahBatchSoal(
@@ -118,8 +137,6 @@ interface ApiService {
         @Part cv: MultipartBody.Part
     ): Call<LamaranResponse>
 
-
-
     @GET("api/cek-lamaran")
     fun cekLamaran(
         @Query("user_id") userId: Int,
@@ -129,16 +146,47 @@ interface ApiService {
     @GET("api/lamaran/user/{id}")
     fun getLamaranByUserId(@Path("id") userId: Int): Call<List<ModelDaftarLamaran>>
 
+    @GET("user/get/soal")
+    fun getSoalByUserAndLamaran(
+        @Query("user_id") userId: Int,
+        @Query("lamaran_id") lamaranId: Int
+    ): Call<GetResponseSoal>
+
+    @GET("user/soal/cek")
+    fun cekSudahKirim(
+        @Query("lamaran_id") lamaranId: Int
+    ): Call<SendResponse>
+
+    @GET("user/soal/send")
+    fun kirimJawaban(
+        @Query("lamaran_id") lamaranId: Int,
+        @Query("jum_benar") jumlahBenar: Int
+    ): Call<SendResponse>
+
+
     @GET("api/lowongan/{id}/pendaftar")
     fun getPendaftarByLowongan(
         @Path("id") lowonganId: Int
     ): Call<GetPendaftarResponse>
 
-    @GET("user/profile")
-    fun getUserProfile(@Header("Authorization") token: String): Call<UserProfileResponse>
+    @GET("pofil/get")
+    fun getUserProfile(
+        @Query("id") id: Int
+    ): Call<UserProfileResponse>
 
+    @FormUrlEncoded
+    @POST("pofil/update")
+    fun updateProfil(
+        @Field("id") id: Int,
+        @Field("nik") nik: String,
+        @Field("nama") nama: String,
+        @Field("alamat") alamat: String,
+        @Field("jkl") jkl: String,
+        @Field("no_hp") no_hp: String,
+    ): Call<SendResponse>
+
+    @GET("lowongan/lamaran/acc")
+    fun accLamaran(
+        @Query("id") id: Int
+    ): Call<SendResponse>
 }
-
-
-
-

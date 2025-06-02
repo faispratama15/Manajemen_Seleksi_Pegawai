@@ -21,6 +21,7 @@ class LamaranFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: LamaranAdapter
     private val listLamaran = mutableListOf<ModelDaftarLamaran>()
+    private var userId: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +32,13 @@ class LamaranFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val sharedPref = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        userId = sharedPref.getInt("user_id", -1)
 
         recyclerView = view.findViewById(R.id.recyclerLamaran)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = LamaranAdapter(listLamaran, requireContext())
+        adapter = LamaranAdapter(listLamaran, requireContext(), userId)
         recyclerView.adapter = adapter
-
-        val sharedPref = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
-        val userId = sharedPref.getInt("user_id", -1)
 
         if (userId != -1) {
             getLamaran(userId)
@@ -72,5 +72,15 @@ class LamaranFragment : Fragment() {
                 Log.e("LamaranSaya", "Failure: ${t.message}")
             }
         })
+    }
+
+    @Override
+    override fun onResume() {
+        super.onResume()
+        if (userId != -1) {
+            getLamaran(userId)
+        } else {
+            Toast.makeText(requireContext(), "User ID tidak ditemukan", Toast.LENGTH_SHORT).show()
+        }
     }
 }

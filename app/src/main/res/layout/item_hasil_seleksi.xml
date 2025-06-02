@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_card"
+    android:padding="15dp"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/namaHasil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textColor="#E08A0F" />
+
+    <TextView
+        android:id="@+id/skorHasil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skor"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textColor="#E08A0F"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/namaHasil"/>
+</RelativeLayout>
