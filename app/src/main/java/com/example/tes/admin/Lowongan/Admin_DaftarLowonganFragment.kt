@@ -64,7 +64,7 @@ class Admin_DaftarLowonganFragment : Fragment() {
                     dataLowongan.addAll(newData)
                     adapter.notifyDataSetChanged()
                 } else {
-                    Toast.makeText(requireContext(), "Gagal ambil data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Gagal ambil dataaa", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<GetResponse>, t: Throwable) {
