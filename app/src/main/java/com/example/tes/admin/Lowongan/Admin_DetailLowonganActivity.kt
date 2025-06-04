@@ -2,6 +2,7 @@ package com.example.tes.admin.Lowongan
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -40,6 +41,7 @@ class Admin_DetailLowonganActivity : AppCompatActivity() {
         val btnkembali = findViewById<Button>(R.id.btnbackDaftarLowonganForAdmin)
         val btngambarbck = findViewById<ImageView>(R.id.bckbck)
         val btnLihatHasil = findViewById<Button>(R.id.lihatHasil)
+        val btnAkhiriLowongan = findViewById<Button>(R.id.btnAkhiriLowongan)
 
         Nama.setText(intent.getStringExtra("nama"))
         Perusahaan.setText(intent.getStringExtra("perusahaan"))
@@ -75,6 +77,57 @@ class Admin_DetailLowonganActivity : AppCompatActivity() {
 
         btnmulaiseleksi.setOnClickListener {
             showBatchSoalDialog(lowonganId)
+        }
+
+        btnAkhiriLowongan.isEnabled = false
+        if (lowonganId != -1) {
+            ApiClient.instance.isLowonganBerakhir(lowonganId).enqueue(object : Callback<SendResponse> {
+                override fun onResponse(call: Call<SendResponse>, response: Response<SendResponse>) {
+                    if (response.isSuccessful) {
+                        val isSelesai = response.body()?.success ?: false
+                        if (isSelesai) {
+                            btnAkhiriLowongan.isEnabled = false
+                            btnAkhiriLowongan.setBackgroundColor(Color.GRAY)
+                        }else{
+                            btnAkhiriLowongan.isEnabled = true
+                            btnAkhiriLowongan.setBackgroundColor(Color.parseColor("#4CAF50"))
+                        }
+                    } else {
+                        Log.e("LowonganStatus", "Gagal mengecek status")
+                    }
+                }
+
+                override fun onFailure(call: Call<SendResponse>, t: Throwable) {
+                    Log.e("LowonganStatus", "Error: ${t.message}")
+                }
+            })
+        }
+
+        btnAkhiriLowongan.setOnClickListener {
+            if (lowonganId != -1) {
+                AlertDialog.Builder(this)
+                    .setTitle("Konfirmasi")
+                    .setMessage("Yakin ingin mengakhiri lowongan ini?")
+                    .setPositiveButton("Ya") { _, _ ->
+                        ApiClient.instance.akhiriLowongan(lowonganId).enqueue(object : Callback<SendResponse> {
+                            override fun onResponse(call: Call<SendResponse>, response: Response<SendResponse>) {
+                                if (response.isSuccessful && response.body()?.success == true) {
+                                    Toast.makeText(this@Admin_DetailLowonganActivity, "Lowongan berhasil diakhiri", Toast.LENGTH_SHORT).show()
+                                    btnAkhiriLowongan.isEnabled = false
+                                    btnAkhiriLowongan.setBackgroundColor(Color.GRAY)
+                                } else {
+                                    Toast.makeText(this@Admin_DetailLowonganActivity, "Gagal mengakhiri lowongan", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+                            override fun onFailure(call: Call<SendResponse>, t: Throwable) {
+                                Toast.makeText(this@Admin_DetailLowonganActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                    }
+                    .setNegativeButton("Batal", null)
+                    .show()
+            }
         }
 
         btnLihatHasil.setOnClickListener {

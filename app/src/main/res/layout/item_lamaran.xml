@@ -48,8 +48,8 @@
             android:layout_height="wrap_content"
             android:text="Hasil"
             android:layout_alignParentEnd="true"
-           android:layout_below="@id/btnSoal"
-            android:backgroundTint="#4CAF50"
+            android:layout_below="@id/btnSoal"
+            android:backgroundTint="#888888"
             android:textColor="#FFFFFF" />
 
         <Button

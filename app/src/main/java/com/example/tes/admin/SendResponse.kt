@@ -6,3 +6,15 @@ data class SendResponse(
     val message: String
 
 )
+
+data class SendResponseHasil(
+    val success: Boolean,
+    val message: String,
+    val data: DataHasil?
+)
+
+data class DataHasil(
+    val nama: String,
+    val skor: Int,
+    val status: String
+)

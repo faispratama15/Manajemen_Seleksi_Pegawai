@@ -61,6 +61,16 @@ interface ApiService {
         @Query("batch_soal_id") batchSoalId: Int
     ): Call<SendResponse>
 
+    @GET("lowongan/lamaran/akhiri-lowongan/cek")
+    fun isLowonganBerakhir(
+        @Query("lowongan_id") lowonganId: Int
+    ): Call<SendResponse>
+
+    @GET("lowongan/lamaran/akhiri-lowongan")
+    fun akhiriLowongan(
+        @Query("lowongan_id") lowonganId: Int
+    ): Call<SendResponse>
+
     @GET("lowongan/lamaran/lihat-hasil")
     fun getHasilSeleksi(@Query("lowongan_id") lowonganId: Int): Call<HasilSeleksiResponse>
 
@@ -162,6 +172,11 @@ interface ApiService {
         @Query("lamaran_id") lamaranId: Int,
         @Query("jum_benar") jumlahBenar: Int
     ): Call<SendResponse>
+
+    @GET("user/lamaran/hasil")
+    fun lihatHasilLamaran(
+        @Query("lamaran_id") lamaranId: Int
+    ): Call<SendResponseHasil>
 
 
     @GET("api/lowongan/{id}/pendaftar")
