@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val lowongan: LinearLayout = findViewById(R.id.lowongan)
         val soal: LinearLayout = findViewById(R.id.soal)
+        val logout: LinearLayout = findViewById(R.id.logout)
         val viewpager = findViewById<ViewPager2>(R.id.admin_viewpager)
         viewpager.adapter = Admin_adapterViewpager(this)
 
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         soal.setOnClickListener{
             viewpager.currentItem=1
         }
-
+        logout.setOnClickListener {
+            viewpager.currentItem=2
+        }
     }
 }

@@ -16,6 +16,7 @@ class AdapterHasilSeleksi(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nama = itemView.findViewById<TextView>(R.id.namaHasil)
         val skor = itemView.findViewById<TextView>(R.id.skorHasil)
+        val status = itemView.findViewById<TextView>(R.id.status)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,6 +28,7 @@ class AdapterHasilSeleksi(
         val data = mlist[position]
         holder.nama.text = data.nama
         holder.skor.text = "Skor: ${data.skor}"
+        holder.status.text ="Status: ${data.status}"
     }
 
     override fun getItemCount(): Int = mlist.size

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/border_card"
-    android:padding="15dp"
+    android:padding="5dp"
     android:layout_margin="5dp">
 
     <TextView
@@ -23,6 +23,16 @@
         android:textStyle="bold"
         android:textSize="25dp"
         android:textColor="#E08A0F"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/namaHasil"/>
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Satus"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textColor="#E08A0F"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/skorHasil"/>
 </RelativeLayout>
